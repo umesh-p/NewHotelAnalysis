@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { Router } from '@angular/router';
+
+import { AppError } from '../../common/errors/app-error';
+import { NotFoundError } from '../../common/errors/not-found-error';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +12,22 @@ import { DataService } from '../../services/data.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private dataService : DataService) { }
+  constructor(private loginService : LoginService , private router:Router) { }
 
   ngOnInit() {
   }
 
   loginUser(userData : any){
-
     let loginUserData = userData.value;
-
-    this.dataService.post('login' , loginUserData).subscribe( (responseData) => {
-      console.log(responseData);
+    this.loginService.post(loginUserData).subscribe( (responseData) => {
+      this.router.navigateByUrl('/home');
+    },(error:AppError) => {
+      if(error instanceof NotFoundError){
+        console.log('not found')
+      }
+      else throw error;
     })
 
 
   }
-
 }
