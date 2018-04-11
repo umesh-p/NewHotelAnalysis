@@ -14,7 +14,6 @@ import 'rxjs/add/operator/map';
 export class DataService {
 
   constructor(@Inject('string') private httpEndpoint:string, private http: Http) {
-    
   }
 
   getAll(){
