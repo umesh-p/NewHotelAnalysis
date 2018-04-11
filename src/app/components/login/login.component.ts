@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   loginUser(userData : any){
     let loginUserData = userData.value;
+    
     this.loginService.post(loginUserData).subscribe( (responseData) => {
       this.router.navigateByUrl('/home');
     },(error:AppError) => {

@@ -1,24 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Injectable, Inject } from '@angular/core';
+import { Http} from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
+import { AppError } from '../common/errors/app-error';
+import { NotFoundError } from '../common/errors/not-found-error';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 
-import { AppError } from '../common/errors/app-error';
-import { NotFoundError } from '../common/errors/not-found-error';
 
 @Injectable()
 export class DataService {
 
-  private headerOptions = {};
-
-  constructor(private httpEndpoint:string , private http : Http) {
+  constructor(@Inject('string') private httpEndpoint:string, private http: Http) {
+    
   }
 
-  get(){
+  getAll(){
     return this.http.get(this.httpEndpoint)
     .map(response => response.json())
     .catch(this.handleError);
