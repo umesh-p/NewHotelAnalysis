@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input } from '@angular/core';
+import { MenuDataService } from "../../services/childServices/menu-data.service";
 
 @Component({
   selector: 'app-sidenav',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  @Input('sideNavHideShow') sideNavHideShow:boolean = true;
+
+  menuDataArray:any = [];
+  constructor(private menuData : MenuDataService) { }
+
 
   ngOnInit() {
+    this.menuData.getAll().subscribe((result) => {
+      this.menuDataArray = result;
+    })
+    ;
   }
 
 }

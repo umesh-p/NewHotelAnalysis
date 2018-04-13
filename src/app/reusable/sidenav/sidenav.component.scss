@@ -1,4 +1,30 @@
 .side-menu-bar{
   width:240px;
-  border:1px solid gray;
+  background-color: #114861;
+  color: #fff;
+  z-index:20;
+  -webkit-transition: all 0.5s; /* Safari */
+  transition: all 0.5s;
+}
+.side-menu-bar-hide{
+  margin-left: -240px;
+}
+.list-group-item{
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+}
+.list-group-item:hover , .activeItem{
+  background-color: #427186;
+}
+.ulList{
+  margin-top: 85px;
+}
+.menuLinks{
+  text-decoration: none;
+  color:white;
+}
+.menuLinks > i{
+  font-size:14px;
 }

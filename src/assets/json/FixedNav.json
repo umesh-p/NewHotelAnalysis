@@ -1,0 +1,32 @@
+[
+  {
+    "name":"Order Panel",
+    "url":"orderpanel",
+    "icon":"fa fa-coffee"
+  },
+  {
+    "name":"Stock Inventory",
+    "url":"stockInventory",
+    "icon":"fa fa-shopping-basket"
+  },
+  {
+    "name":"Dashboard",
+    "url":"dashboard",
+    "icon":"fa fa-area-chart"
+  },
+  {
+    "name":"Analysis",
+    "url":"analysis",
+    "icon":"fa fa-pie-chart"
+  },
+  {
+    "name":"Review Analysis",
+    "url":"reviews",
+    "icon":"fa fa-users"
+  },
+  {
+    "name":"Settings",
+    "url":"settings",
+    "icon":"fa fa-gears"
+  }
+]

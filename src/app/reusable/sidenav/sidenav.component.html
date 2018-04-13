@@ -1,3 +1,10 @@
-<div class="side-menu-bar full-height">
-klfjvlk kj fv
+<div class="side-menu-bar full-height absolute" [class.side-menu-bar-hide] = "!sideNavHideShow">
+    <ul class="list-group ulList">
+      <li class="list-group-item transperant " *ngFor="let menuItem of menuDataArray" routerLinkActive="activeItem" routerLink="{{menuItem.url}}" >
+        <a class="menuLinks" >
+          <i class="{{menuItem.icon}}" aria-hidden="true"></i>
+          &nbsp;&nbsp;&nbsp;&nbsp;{{menuItem.name}}
+        </a>
+      </li>
+    </ul>
 </div>

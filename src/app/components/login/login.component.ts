@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 import { AppError } from '../../common/errors/app-error';
 import { NotFoundError } from '../../common/errors/not-found-error';
-import { LoginService } from '../../services/login.service';
+
+import { LoginService } from '../../services/childServices/login.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   loginUser(userData : any){
     let loginUserData = userData.value;
-    
+
     this.loginService.post(loginUserData).subscribe( (responseData) => {
       this.router.navigateByUrl('/home');
     },(error:AppError) => {
