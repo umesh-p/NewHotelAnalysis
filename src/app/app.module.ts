@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './router/app-routing.module';
 import { SidenavComponent } from './reusable/sidenav/sidenav.component';
 
@@ -16,13 +15,18 @@ import { DataService } from './services/data.service';
 import { LoginService } from './services/childServices/login.service';
 import { MenuDataService } from './services/childServices/menu-data.service';
 
-import { OrderComponent } from './components/order/order.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AnalyticsComponent } from './components/analytics/analytics.component';
-import { ReviewComponent } from './components/review/review.component';
-import { SettingComponent } from './components/setting/setting.component';
-import { InventoryComponent } from './components/inventory/inventory.component';
+import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from './components/home/home.component';
+
+
+import { OrderComponent } from './components/home/childrenComp/order/order.component';
+import { DashboardComponent } from './components/home/childrenComp/dashboard/dashboard.component';
+import { AnalyticsComponent } from './components/home/childrenComp/analytics/analytics.component';
+import { ReviewComponent } from './components/home/childrenComp/review/review.component';
+import { SettingComponent } from './components/home/childrenComp/setting/setting.component';
+import { InventoryComponent } from './components/home/childrenComp/inventory/inventory.component';
+
 
 
 @NgModule({
@@ -36,7 +40,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ReviewComponent,
     SettingComponent,
     InventoryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

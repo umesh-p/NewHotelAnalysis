@@ -15,14 +15,14 @@
 
 .style-4::-webkit-scrollbar
 {
-	width: 5px;
+	width: 7px;
 	background-color: #F5F5F5;
 }
 
 .style-4::-webkit-scrollbar-thumb
 {
-  background-color: #a9a9a9;
-    border: 1px solid #959595;
+  height: 56px;
+  background: hsla(0, 0%, 53.3%, .4);
 }
 
 

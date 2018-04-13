@@ -1,10 +1,13 @@
 .side-menu-bar{
+
   width:240px;
   background-color: #114861;
   color: #fff;
   z-index:20;
   -webkit-transition: all 0.5s; /* Safari */
   transition: all 0.5s;
+  position: fixed;
+
 }
 .side-menu-bar-hide{
   margin-left: -240px;
@@ -19,7 +22,7 @@
   background-color: #427186;
 }
 .ulList{
-  margin-top: 85px;
+  margin-top: 45px;
 }
 .menuLinks{
   text-decoration: none;

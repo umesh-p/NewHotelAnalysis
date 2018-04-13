@@ -8,10 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent{
-  
-  title:string = 'app';
-  showSideNav:boolean = true;
 
-  constructor(){}
+  title:string = 'app';
+
 
 }

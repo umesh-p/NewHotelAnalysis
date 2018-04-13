@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     let loginUserData = userData.value;
 
     this.loginService.post(loginUserData).subscribe( (responseData) => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/orderpanel');
     },(error:AppError) => {
       if(error instanceof NotFoundError){
         console.log('not found')
