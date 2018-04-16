@@ -10,6 +10,11 @@
     "icon":"fa fa-shopping-basket"
   },
   {
+    "name":"Manage Menu",
+    "url":"manageMenu",
+    "icon":"fa fa-th-list"
+  },
+  {
     "name":"Dashboard",
     "url":"dashboard",
     "icon":"fa fa-area-chart"

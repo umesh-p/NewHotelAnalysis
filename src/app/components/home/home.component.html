@@ -1,17 +1,27 @@
-<div class="full-height">
+<div class="full-height container-fluid">
 
-  <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
-              <!-- SideNav slide-out button -->
-              <div class="float-left">
-                  <a data-activates="slide-out" class="button-collapse" (click) = "showSideNav = !showSideNav"><i class="fa fa-bars"></i></a>
-              </div>
+  <div class="row">
 
-  </nav>
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+                <!-- SideNav slide-out button -->
+                <div class="float-left">
+                    <a data-activates="slide-out" class="button-collapse" (click) = "showSideNav = !showSideNav"><i class="fa fa-bars"></i></a>
+                </div>
 
-  <app-sidenav [sideNavHideShow] = "showSideNav"></app-sidenav>
+    </nav>
 
-  <div class="mainContainer">
-    <router-outlet></router-outlet>
+    <app-sidenav [sideNavHideShow] = "showSideNav"></app-sidenav>
+
+    <div class="mainContainer col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+
   </div>
+
+
+</div>
+
+<div class="overlay" *ngIf="showSideNav">
+
 
 </div>

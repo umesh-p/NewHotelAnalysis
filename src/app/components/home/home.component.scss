@@ -3,7 +3,20 @@
     color: #fff;
 }
 .mainContainer{
-  height: auto;
-  background: gray;
-  margin-top: 46px;
+  height: calc(100%);
+  padding-top:50px;
+}
+
+.overlay{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 15;
+    left: 0;
+    top: 0;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.45);
+    overflow-x: hidden;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
 }

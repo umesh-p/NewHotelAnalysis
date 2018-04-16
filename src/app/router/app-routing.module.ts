@@ -10,6 +10,7 @@ import { DashboardComponent } from '../components/home/childrenComp/dashboard/da
 import { AnalyticsComponent } from '../components/home/childrenComp/analytics/analytics.component';
 import { ReviewComponent } from '../components/home/childrenComp/review/review.component';
 import { SettingComponent } from '../components/home/childrenComp/setting/setting.component';
+import { MenuManagement } from '../components/home/childrenComp/menu-management/menu-management.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     children :[
       { path: 'orderpanel', component: OrderComponent },
       { path: 'stockInventory', component: InventoryComponent },
+      { path: 'manageMenu', component : MenuManagement},
       { path: 'dashboard', component: DashboardComponent },
       { path: 'analysis', component: AnalyticsComponent },
       { path: 'reviews', component: ReviewComponent },
