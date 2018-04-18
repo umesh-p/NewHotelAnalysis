@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
         this.router.navigateByUrl('/home/orderpanel');
       }else{
-        this.toastr.error(responseData.message, 'Error!' , environment.tostConfigurations);
+        this.toastr.error(responseData.message, 'Error!' ,{showCloseButton : true});
       }
     },(error:AppError) => {
       if(error instanceof NotFoundError){

@@ -1,3 +1,5 @@
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { BrowserModule} from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule, NO_ERRORS_SCHEMA, ErrorHandler} from '@angular/core';
@@ -33,8 +35,6 @@ import { MenuManagement } from './components/home/childrenComp/menu-management/m
 
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,8 +57,9 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     AppRoutingModule,
     HttpModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
-  ],
+    ToastModule.forRoot(),
+    NgSelectModule
+    ],
   providers: [
     { provide : ErrorHandler , useClass:GlobalErrorHandler},
     DataService,

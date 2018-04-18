@@ -1,15 +1,160 @@
-<div class="row">
+<div class="row full-height">
 
-  <div class="col-6 col-md-8 col-lg-8 .col-xl-8 grayBackColor">
-      this is the item column
+  <div class="col-12 col-md-8 col-lg-8 col-xl-8">
+
+    <div class="itemsContainer full-height row">
+      <div class="itemContainerHeader z-depth-1 col-md-12 ">
+          Items In Stock
+      </div>
+
+      <div class="itemContainerBody col-md-12 style-4">
+        <br />
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add Item In Inventory</h5>
+              <hr>
+                <form class="row" #itemAddForm="ngForm" *ngIf="!isUpdateItem" (ngSubmit)="onSubmit(itemAddForm)" novalidate>
+
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="text" name="itemname" ngModel placeholder="Item Name" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="qtyPresent" ngModel placeholder="qtyPresent" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="minQty" ngModel placeholder="minQty" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="maxQty" ngModel placeholder="maxQty" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number"  name="orderedQty" ngModel placeholder="orderedQty" required/>
+                  </div>
+                  <div class="col">
+                      <ng-select [items]="allUnits" name="unit" [(ngModel)]="unit"></ng-select>
+                  </div>
+
+                  <div class="col">
+                      <button type="submit" class="btn btn-primary btn-sm my-0 noMargin" >Add Item</button>
+                  </div>
+
+                </form>
+
+                <form class="row" #itemUpdateForm="ngForm" (ngSubmit)="onUpdate(itemUpdateForm)" *ngIf="isUpdateItem" novalidate>
+
+                  <div class="col d-none">
+                      <input class="form-control fontSize14 " type="number" name="id" [(ngModel)] = "updatedItem.id" />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="text" name="itemname" [(ngModel)] = "updatedItem.itemname" placeholder="Item Name" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="qtyPresent" [(ngModel)] = "updatedItem.qtyPresent" placeholder="qtyPresent" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="minQty" [(ngModel)] = "updatedItem.minQty" placeholder="minQty" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="maxQty" [(ngModel)] = "updatedItem.maxQty" placeholder="maxQty" required />
+                  </div>
+                  <div class="col">
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="orderedQty" [(ngModel)] = "updatedItem.orderedQty" placeholder="orderedQty" disabled required />
+                  </div>
+                  <div class="col">
+                      <ng-select [items]="allUnits" name="unit" [(ngModel)] = "updatedItem.unit"></ng-select>
+                  </div>
+                  <div class="col">
+                      <button type="submit" class="btn btn-primary btn-sm my-0 noMargin" >Update Item</button>
+                  </div>
+                </form>
+      <!--Table-->
+            </div>
+        </div>
+        <br />
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-responsive-md table-fixed inventoryTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Item Name</th>
+                            <th>In Stock Qty</th>
+                            <th>Min Qty</th>
+                            <th>Max Qty</th>
+                            <th>Ordered Qty</th>
+                            <th>Edit</th>
+                            <th>Remove</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of inventoryArray; let i = index;">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{item.itemname}}</td>
+                            <td>{{item.qtyPresent +" "+ item.unit}}</td>
+                            <td>{{item.minQty +" "+ item.unit}}</td>
+                            <td>{{item.maxQty +" "+ item.unit}}</td>
+                            <td>{{item.orderedQty +" "+ item.unit }}</td>
+                            <td><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click) = "updateItem(item)">Edit</button></td>
+                            <td><button type="button" class="btn btn-danger btn-sm my-0 noMargin" (click) = "deleteItem(item.id)">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-md-2 col-lg-2 .col-xl-2">
+      <div class="itemsContainer full-height row">
+
+      <div class="itemContainerHeader z-depth-1 col-md-12 ">
+          Stock Alerts
+      </div>
+      <div class="itemContainerBody col-md-12 style-4">
+        <br/>
+        <div class="card alertCards" *ngFor="let item of lessQtyItems">
+            <div class="card-body fontSize13">
+              <div>
+                <span class="card-title fontSize15"><b>{{item.itemname}}</b></span>
+                <span class="card-text fontSize13 float-right dangerText ">Only {{item.qtyPresent + " " + item.unit }} left .... </span>
+              </div>
+              <div style="margin-top:5px">
+                <span class="card-title fontSize14">
+                  <input class="form-control fontSize14 noMargin noPadding form-control-sm" #orderQty type="number" name="orderedQty" placeholder="Order Qty in {{item.unit}}"/>
+               </span>
+              </div>
+            </div>
+            <a class="btn btn-deep-orange btn-sm my-0 noMargin" (click)="orderItem(item,orderQty)">Order Now</a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="col-3 col-md-2 col-lg-2 .col-xl-2">
-      db kj kn djjhn sdkj
-  </div>
+  <div class="col-6 col-md-2 col-lg-2 .col-xl-2">
+    <div class="row itemsContainer full-height">
+      <div class="itemContainerHeader z-depth-1 col-md-12 ">
+          Ordered Items
+      </div>
+      <div class="itemContainerBody col-md-12 style-4">
 
-  <div class="col-3 col-md-2 col-lg-2 .col-xl-2">
-      jnskdjf kj sdkn
-  </div>
+        <br/>
+        <div class="card orderCards" *ngFor="let item of orderedItems">
+            <div class="card-body fontSize13">
+              <div>
+                <span class="card-title fontSize15"><b>{{item.itemname}}</b></span>
+                <span class="card-text fontSize14 float-right dangerText ">Orderd {{item.orderedQty}} Units</span>
+              </div>
 
+              <div>
+                <span class="card-title fontSize14">
+                  <input class="form-control fontSize14 noMargin noPadding form-control-sm" #arrivedQty type="number" name="orderedQty" placeholder="Arrived Qty {{item.unit}}"/>
+               </span>
+              </div>
+            </div>
+            <a class="btn success-color btn-sm my-0 noMargin" (click)="setArrivedQty(item, arrivedQty)">Arrived</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

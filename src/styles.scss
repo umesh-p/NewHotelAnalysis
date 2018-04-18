@@ -1,4 +1,4 @@
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 .overflowYAuto{
   overflow-y: auto;
@@ -26,6 +26,27 @@
   background-color: red;
 }
 
+.dangerText{
+  color:#CC0000 !important;
+}
+
+/*Font sizes*/
+.fontSize11{
+    font-size: 0.4rem !important;
+}
+
+.fontSize12{
+    font-size: 0.5rem !important;
+}
+.fontSize13{
+    font-size: 0.6rem !important;
+}
+.fontSize14{
+    font-size: 0.8rem !important;
+}
+.fontSize15{
+    font-size: 0.9rem !important;
+}
 
 
 
@@ -40,13 +61,13 @@
 
 .style-4::-webkit-scrollbar
 {
-	width: 7px;
+	width: 2px;
 	background-color: #F5F5F5;
 }
 
 .style-4::-webkit-scrollbar-thumb
 {
-  height: 56px;
+  height: 30px;
   background: hsla(0, 0%, 53.3%, .4);
 }
 
@@ -55,4 +76,19 @@
 
 .absolute{
   position: absolute;
+}
+
+
+//margin classes
+
+
+.noMargin{
+  margin:0px !important;
+}
+
+
+//padding classes
+
+.noPadding{
+  padding: 0 !important;
 }
