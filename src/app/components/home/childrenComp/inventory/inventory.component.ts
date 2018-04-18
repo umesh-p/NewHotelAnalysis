@@ -122,7 +122,9 @@ export class InventoryComponent implements OnInit {
 
   setArrivedQty(item,arrivedQuantity){
 
-    let updatedOrderedQty = item.orderedQty - parseFloat(arrivedQuantity.value);
+    let updatedOrderedQty = item.orderedQty - parseFloat(arrivedQuantity.value) ;
+    updatedOrderedQty = (updatedOrderedQty >= 0) ? updatedOrderedQty:0;
+
     let updatedPrsentQty = parseFloat(item.qtyPresent) + parseFloat(arrivedQuantity.value);
     let itemId = item.id;
 
@@ -133,7 +135,6 @@ export class InventoryComponent implements OnInit {
     }
 
     let objIndex = this.inventoryArray.findIndex((obj => obj.id == itemId));
-
 
     this.inventoryService.put(arrivedQty).subscribe(result => {
       if(result.success){
