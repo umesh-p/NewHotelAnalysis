@@ -5,6 +5,11 @@
     "icon":"fa fa-coffee"
   },
   {
+    "name":"Daily Preparations",
+    "url":"dailyprep",
+    "icon":"fa fa-sun-o"
+  },
+  {
     "name":"Stock Inventory",
     "url":"stockInventory",
     "icon":"fa fa-shopping-basket"

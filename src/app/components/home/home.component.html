@@ -10,7 +10,7 @@
 
     </nav>
 
-    <app-sidenav [sideNavHideShow] = "showSideNav"></app-sidenav>
+    <app-sidenav [sideNavHideShow] = "showSideNav" (closeSideNav) = "showSideNav = !showSideNav"></app-sidenav>
 
     <div class="mainContainer style-4 col-md-12 full-height">
       <router-outlet></router-outlet>

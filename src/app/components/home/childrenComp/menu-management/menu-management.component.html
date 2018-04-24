@@ -1,3 +1,174 @@
-<p>
-  menu-management works!
-</p>
+<div class="row full-height">
+  <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="itemsContainer full-height row">
+      <div class="itemContainerBody col-md-12 style-4">
+        <br />
+        <div class="card">
+          <div class="view overlay AddMenuItemTitle">
+              Add New Menu Item In Records
+              <span>
+                <button type="button" class="btn btn-info waves-effect btn-sm float-right" (click)="openMenuItemPanel()">Add New Menu</button>
+              </span>
+          </div>
+            <div class="card-body paddingSides" *ngIf="viewAddNewMenuPanel">
+                <form class="row" #menuItemForm="ngForm" *ngIf="!isUpdateItem" (ngSubmit)="onSubmit(menuItemForm)">
+                  <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 lightGrayBorder">
+
+                    <div class="col d-none">
+                        <input class="form-control fontSize14" type="number" name="id" [(ngModel)]="menuDetails.id" />
+                    </div>
+
+                      <input #menuItemName="ngModel" class="fontSize14 form-control " type="text" name="name" [(ngModel)]="menuDetails.name" placeholder="Item Name" required />
+                      <div *ngIf="menuItemName.invalid && menuItemName.touched">
+                          <div class="alert alert-danger fontSize13" *ngIf="menuItemName.errors.required">
+                                  Name Field can not be blank
+                          </div>
+                      </div>
+                      <input #costprice="ngModel" class="fontSize14 form-control " type="number" name="costprice" [(ngModel)]="menuDetails.costprice" placeholder="Cost Price Per Plate" required />
+                      <div *ngIf="costprice.invalid && costprice.touched">
+                          <div class="alert alert-danger fontSize13" *ngIf="costprice.errors.required">
+                                  Cost Field can not be blank
+                          </div>
+                      </div>
+                      <input #sellingprice="ngModel" class="fontSize14 form-control " type="number" name="sellingprice" [(ngModel)]="menuDetails.sellingprice" placeholder="Selling Price Per Plate" required />
+                      <div *ngIf="sellingprice.invalid && sellingprice.touched">
+                          <div class="alert alert-danger fontSize13" *ngIf="sellingprice.errors.required">
+                                  Selling Price Field can not be blank
+                          </div>
+                      </div>
+                    <input #noOfPlatesPerDay="ngModel" class="fontSize14 form-control " type="number" name="platesperday" [(ngModel)]="menuDetails.platesperday" placeholder="No Of Plates Created Per Day" required />
+                    <div *ngIf="noOfPlatesPerDay.invalid && noOfPlatesPerDay.touched">
+                        <div class="alert alert-danger fontSize13" *ngIf="noOfPlatesPerDay.errors.required">
+                                No Of Plates Field can not be blank
+                        </div>
+                    </div>
+                  <div class="row">
+                    <div class="col">
+                      <label>
+                        <input  type="checkbox" class="option-input checkbox"  name="isfavourite" [(ngModel)]="!!menuDetails.isfavourite"/>
+                          Is Favourite
+                      </label>
+                    </div>
+                    <div class="col">
+                      <label>
+                          <input  type="checkbox" class="option-input checkbox" name="isdisabled" [(ngModel)]="!!menuDetails.isdisabled" />
+                            Disable Today
+                        </label>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col">
+                      <label for="availableAtBreakfast">
+                        <input  type="radio" id="availableAtBreakfast" class="option-input radio" value=1 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                            BreakFast
+                      </label>
+                    </div>
+                    <div class="col">
+                      <label for="availableAtLunch">
+                          <input type="radio" id="availableAtLunch" class="option-input radio" value=2 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                            Lunch
+                        </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label for="availableAtDinner">
+                          <input  type="radio" id="availableAtDinner"  class="option-input radio" value=3 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                            Dinner
+                        </label>
+                    </div>
+                    <div class="col">
+                      <label for="availableAtAll">
+                          <input  type="radio" id="availableAtAll" class="option-input radio" value=4 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                            All
+                        </label>
+                    </div>
+                  </div>
+                  </div>
+
+
+                  <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7">
+
+                      <table class="table noMargin materialTable">
+                        <thead class="tableHead">
+                            <tr class="text-white">
+                                <th>#</th>
+                                <th>Item Name</th>
+                                <th>Qty. Required</th>
+                                <th>Unit</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+
+                            </tr >
+                        </thead>
+
+                        <tbody>
+                          <tr *ngFor="let item of menuItemMaterials; let i = index;">
+                            <td scope="row">{{i + 1}}</td>
+                            <td>{{item.materialname}}</td>
+                            <td>{{item.qtyused}}</td>
+                            <td>{{item.unit}}</td>
+                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click)="editMaterialItem(item,i)">Edit</button></td>
+                            <td class="text-center"><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click)="removeMaterial(i)">Remove</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <form class="materialForm" #materialItem='ngForm' (ngSubmit)="addMaterial(materialItem)">
+                            <div class="row">
+                                <div class="col"><ng-select autofocus [items]="allMaterialNames" name="materialname" [(ngModel)]="menuMaterialObject.materialname" #selectedMaterial = "ngModel" required placeholder="Material"></ng-select></div>
+                                <div class="col"><input #qtyIngredient="ngModel" class="fontSize14 form-control noMargin noPadding" type="number" name="qtyused" [(ngModel)]="menuMaterialObject.qtyused" placeholder="Qty Req" required /></div>
+                                <div class="col"><ng-select [items]="allUnits" name="unit" [(ngModel)]="menuMaterialObject.unit" #selectedUnit = "ngModel" required placeholder="Unit"></ng-select></div>
+                                <div class="col text-center"><button type="submit" class="btn btn-primary btn-sm my-0 noMargin" [disabled]="materialItem.invalid">Add / Edit</button></div>
+
+                            </div>
+                      </form>
+
+                  </div>
+                    <div style="width:98%">
+                      <button type="submit" class="btn btn-primary float-right btn-sm my-0 noMargin" [disabled]="(!menuItemForm.valid) || (menuItemMaterials.length == 0)" >Insert / Update Menu Item</button>
+                    </div>
+                </form>
+
+
+      <!--Table-->
+            </div>
+        </div>
+        <br/>
+
+
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-responsive-md table-fixed inventoryTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Item Name</th>
+                            <th>Cost Price</th>
+                            <th>Selling Price</th>
+                            <th>Is Fevourite</th>
+                            <th>Not available Today</th>
+                            <th>Edit</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of allMenuItems; let i = index;">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{item.name}}</td>
+                            <td>{{item.costprice}}</td>
+                            <td>{{item.sellingprice}}</td>
+                            <td>{{item.isfavourite}}</td>
+                            <td>{{item.availableat}}</td>
+                            <td><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click) = "updateMenuItem(item)">Edit</button></td>
+                            <td><button type="button" class="btn btn-danger btn-sm my-0 noMargin" (click) = "deleteMenuItem(item.id)">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</div>

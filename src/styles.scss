@@ -4,6 +4,11 @@
   overflow-y: auto;
 }
 
+.VAlignChildren{
+  display: flex;
+  align-items: center;
+}
+
 /*Background Colors */
 
 .blackBackColor{
@@ -48,6 +53,10 @@
     font-size: 0.9rem !important;
 }
 
+/*Visibility Hidden*/
+.visibilityH{
+  visibility: hidden;
+}
 
 
 /*

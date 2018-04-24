@@ -1,0 +1,164 @@
+.AddMenuItemTitle{
+    background: #114861;
+    color: white;
+    padding: 5px 15px;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.itemContainerBody{
+  height: calc(100% - 45px);
+  overflow-y : scroll;
+  background-color: #8080800a;
+
+}
+.table-fixed {
+    table-layout: fixed;
+    overflow: hidden;
+}
+
+.card{
+  border-radius: 0px;
+}
+
+
+.paddingSides{
+  padding:10px 20px 20px 35px;
+}
+
+i {
+    border: solid #6b6b6b;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.incDecArrows:active{
+  background-color: #cacaca;
+}
+
+.alertDiv{
+    padding: 8px 6px;
+    font-size: 12px;
+    background-color: #ef5c5185;
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.padding15{
+   padding:15px 0px;
+}
+
+.lightGrayBorder{
+    border-right: 1px solid #cbd1d8;
+}
+.materialForm{
+  padding: 8px;
+  background-color: #e9e9e9;
+}
+
+.materialTable th, .materialTable td {
+  padding: 0.75rem;
+}
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 100px;
+    width: 100px;
+    margin-left: -50px;
+    margin-top: -50px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 5px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 5;
+}
+
+.option-input:hover {
+  background: #9faab7;
+}
+
+.option-input:checked {
+  background: #0a2f3f;
+}
+
+.option-input:checked::before {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 16.66667px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+
+.option-input.radio {
+  border-radius: 50%;
+}
+
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+label{
+  color: #333;
+  font-size: 0.8rem;
+}
+
+.itemsContainer form-control{
+  margin-bottom: 0.6rem;
+}
+
+.tableHead{
+  background-color: #155673 !important;
+}

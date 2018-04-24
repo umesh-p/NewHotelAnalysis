@@ -11,6 +11,8 @@ import { AnalyticsComponent } from '../components/home/childrenComp/analytics/an
 import { ReviewComponent } from '../components/home/childrenComp/review/review.component';
 import { SettingComponent } from '../components/home/childrenComp/setting/setting.component';
 import { MenuManagement } from '../components/home/childrenComp/menu-management/menu-management.component';
+import { DailyPreparationsComponent } from '../components/home/childrenComp/daily-preparations/daily-preparations.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,6 +26,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'analysis', component: AnalyticsComponent },
       { path: 'reviews', component: ReviewComponent },
+      { path: 'dailyprep', component : DailyPreparationsComponent},
       { path: 'settings', component: SettingComponent },
     ]},
   { path: 'notFound', component: NotFoundComponent },

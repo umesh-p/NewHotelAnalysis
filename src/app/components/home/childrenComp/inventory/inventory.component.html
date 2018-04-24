@@ -13,59 +13,198 @@
             <div class="card-body">
               <h5 class="card-title">Add Item In Inventory</h5>
               <hr>
-                <form class="row" #itemAddForm="ngForm" *ngIf="!isUpdateItem" (ngSubmit)="onSubmit(itemAddForm)" novalidate>
+                <form class="row VAlignChildren" #itemAddForm="ngForm" *ngIf="!isUpdateItem" (ngSubmit)="onSubmit(itemAddForm)">
 
                   <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="text" name="itemname" ngModel placeholder="Item Name" required />
-                  </div>
-                  <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="qtyPresent" ngModel placeholder="qtyPresent" required />
-                  </div>
-                  <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="minQty" ngModel placeholder="minQty" required />
-                  </div>
-                  <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="maxQty" ngModel placeholder="maxQty" required />
-                  </div>
-                  <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number"  name="orderedQty" ngModel placeholder="orderedQty" required/>
-                  </div>
-                  <div class="col">
-                      <ng-select [items]="allUnits" name="unit" [(ngModel)]="unit"></ng-select>
+                      <input #name = "ngModel" class=" form-control fontSize14 noMargin noPadding form-control-sm "  type="text" name="itemname" ngModel placeholder="Item Name" required />
+                      <div *ngIf="name.touched && name.errors" class="relative">
+                        <div class="absolute alertDiv nameErrorMargin"  *ngIf="name.errors.required" > Value Required !</div>
+                      </div>
+
                   </div>
 
                   <div class="col">
-                      <button type="submit" class="btn btn-primary btn-sm my-0 noMargin" >Add Item</button>
+                      <div class="incDecArrows text-center" (click)="onIncrement(itemAddForm.value,'qtyPresent')">
+                        <i class="arrow up"></i>
+                      </div>
+                      <input class="form-control fontSize14 noMargin noPadding form-control-sm"
+                             min=0
+                             type="number"
+                             name="qtyPresent"
+                             #presentQty = "ngModel"
+                             [(ngModel)] = "itemAddForm.value.qtyPresent"
+                             placeholder="qtyPresent"
+                             required/>
+
+                      <div class="incDecArrows text-center" (click)="onDecrement(itemAddForm.value,'qtyPresent')">
+                        <i class="arrow down"></i>
+                      </div>
+
+                      <div *ngIf="presentQty.touched && presentQty.errors">
+                        <div class="absolute alertDiv" *ngIf="presentQty.errors.required" > Value Required !</div>
+                      </div>
+
                   </div>
 
+                  <div class="col">
+                      <div class="incDecArrows text-center" (click)="onIncrement(itemAddForm.value,'minQty')">
+                        <i class="arrow up"></i>
+                      </div>
+                      <input #minQtyVal="ngModel" class="form-control fontSize14 noMargin noPadding form-control-sm"   min=0 type="number" name="minQty" [(ngModel)] = "itemAddForm.value.minQty" placeholder="minQty" required />
+                      <div class="incDecArrows text-center" (click)="onDecrement(itemAddForm.value,'minQty')">
+                        <i class="arrow down"></i>
+                      </div>
+                      <div *ngIf="minQtyVal.touched && minQtyVal.errors">
+                        <div class="absolute alertDiv" *ngIf="minQtyVal.errors.required" > Value Required !</div>
+                      </div>
+
+                  </div>
+
+                  <div class="col">
+                      <div class="incDecArrows text-center" (click)="onIncrement(itemAddForm.value,'maxQty')">
+                        <i class="arrow up"></i>
+                      </div>
+                      <input #maxQtyVal="ngModel" class="form-control fontSize14 noMargin noPadding form-control-sm" min=0 type="number" name="maxQty" [(ngModel)] = "itemAddForm.value.maxQty" placeholder="maxQty" required />
+                      <div class="incDecArrows text-center" (click)="onDecrement(itemAddForm.value,'maxQty')">
+                        <i class="arrow down"></i>
+                      </div>
+                      <div *ngIf="maxQtyVal.touched && maxQtyVal.errors">
+                        <div class="absolute alertDiv" *ngIf="maxQtyVal.errors.required" > Value Required !</div>
+                      </div>
+
+                  </div>
+
+                  <div class="col">
+                      <div class="incDecArrows text-center" (click)="onIncrement(itemAddForm.value,'orderedQty')">
+                        <i class="arrow up"></i>
+                      </div>
+                      <input #orderedQtyVal="ngModel"  class="form-control fontSize14 noMargin noPadding form-control-sm" min=0 type="number"  name="orderedQty" [(ngModel)] = "itemAddForm.value.orderedQty" placeholder="orderedQty" required/>
+                      <div class="incDecArrows text-center" (click)="onDecrement(itemAddForm.value,'orderedQty')">
+                        <i class="arrow down"></i>
+                      </div>
+                      <div *ngIf="orderedQtyVal.touched && orderedQtyVal.errors">
+                        <div class="absolute alertDiv" *ngIf="orderedQtyVal.errors.required" > Value Required !</div>
+                      </div>
+                  </div>
+
+                  <div class="col">
+                      <ng-select [items]="allUnits" name="unit" [(ngModel)]="unit" #selectedUnit = "ngModel" required></ng-select>
+                      <div *ngIf="selectedUnit.touched && selectedUnit.errors">
+                        <div class="absolute alertDiv nameErrorMargin" *ngIf="selectedUnit.errors.required"> Value Required !</div>
+                      </div>
+                  </div>
+
+
+                  <div class="col">
+                      <div class="incDecArrows text-center" (click)="onIncrement(itemAddForm.value,'perunitprice')">
+                        <i class="arrow up"></i>
+                      </div>
+                      <input #perunitprice="ngModel"  class="form-control fontSize14 noMargin noPadding form-control-sm" min=0 type="number"  name="perunitprice" [(ngModel)] = "itemAddForm.value.perunitprice" placeholder="Per unit cost" required/>
+                      <div class="incDecArrows text-center" (click)="onDecrement(itemAddForm.value,'perunitprice')">
+                        <i class="arrow down"></i>
+                      </div>
+                      <div *ngIf="perunitprice.touched && perunitprice.errors">
+                        <div class="absolute alertDiv" *ngIf="perunitprice.errors.required" > Value Required !</div>
+                      </div>
+                  </div>
+
+                  <div class="col">
+                      <button type="submit" class="btn btn-primary btn-sm my-0 noMargin" [disabled]="!itemAddForm.valid" >Add Item</button>
+                  </div>
                 </form>
 
-                <form class="row" #itemUpdateForm="ngForm" (ngSubmit)="onUpdate(itemUpdateForm)" *ngIf="isUpdateItem" novalidate>
+
+
+                <form class="row VAlignChildren" #itemUpdateForm="ngForm" (ngSubmit)="onUpdate(itemUpdateForm)" *ngIf="isUpdateItem" novalidate>
 
                   <div class="col d-none">
                       <input class="form-control fontSize14 " type="number" name="id" [(ngModel)] = "updatedItem.id" />
                   </div>
+
                   <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="text" name="itemname" [(ngModel)] = "updatedItem.itemname" placeholder="Item Name" required />
+                      <input #itemName="ngModel" class="form-control fontSize14 noMargin noPadding form-control-sm" type="text" name="itemname" [(ngModel)] = "updatedItem.itemname" placeholder="Item Name" required />
+
+                      <div *ngIf="itemName.touched && itemName.errors">
+                        <div class="absolute alertDiv nameErrorMargin" *ngIf="itemName.errors.required" > Value Required !</div>
+                      </div>
+
+
                   </div>
+
                   <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="qtyPresent" [(ngModel)] = "updatedItem.qtyPresent" placeholder="qtyPresent" required />
+                    <div class="incDecArrows text-center" (click)="onIncrement(updatedItem,'qtyPresent')">
+                      <i class="arrow up"></i>
+                    </div>
+                      <input #qtyPresentUpdate="ngModel" class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="qtyPresent" [(ngModel)] = "updatedItem.qtyPresent" placeholder="qtyPresent" required />
+                      <div class="incDecArrows text-center" (click)="onDecrement(updatedItem,'qtyPresent')">
+                        <i class="arrow down"></i>
+                      </div>
+
+                      <div *ngIf="qtyPresentUpdate.touched && qtyPresentUpdate.errors">
+                        <div class="absolute alertDiv" *ngIf="qtyPresentUpdate.errors.required" > Value Required !</div>
+                      </div>
                   </div>
+
                   <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="minQty" [(ngModel)] = "updatedItem.minQty" placeholder="minQty" required />
+                    <div class="incDecArrows text-center" (click)="onIncrement(updatedItem,'minQty')">
+                      <i class="arrow up"></i>
+                    </div>
+                      <input #minQtyUpdate="ngModel" class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="minQty" [(ngModel)] = "updatedItem.minQty" placeholder="minQty" required />
+                      <div class="incDecArrows text-center" (click)="onDecrement(updatedItem,'minQty')">
+                        <i class="arrow down"></i>
+                      </div>
+                      <div *ngIf="minQtyUpdate.touched && minQtyUpdate.errors">
+                        <div class="absolute alertDiv" *ngIf="minQtyUpdate.errors.required" > Value Required !</div>
+                      </div>
                   </div>
+
+
                   <div class="col">
-                      <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="maxQty" [(ngModel)] = "updatedItem.maxQty" placeholder="maxQty" required />
+                    <div class="incDecArrows text-center" (click)="onIncrement(updatedItem,'maxQty')">
+                      <i class="arrow up"></i>
+                    </div>
+                    <input #maxQtyUpdate="ngModel" class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="maxQty" [(ngModel)] = "updatedItem.maxQty" placeholder="maxQty" required />
+                    <div class="incDecArrows text-center" (click)="onDecrement(updatedItem,'maxQty')">
+                      <i class="arrow down"></i>
+                    </div>
+
+                    <div *ngIf="maxQtyUpdate.touched && maxQtyUpdate.errors">
+                      <div class="absolute alertDiv" *ngIf="maxQtyUpdate.errors.required" > Value Required !</div>
+                    </div>
+
                   </div>
+
                   <div class="col">
                       <input class="form-control fontSize14 noMargin noPadding form-control-sm" type="number" name="orderedQty" [(ngModel)] = "updatedItem.orderedQty" placeholder="orderedQty" disabled required />
                   </div>
+
                   <div class="col">
-                      <ng-select [items]="allUnits" name="unit" [(ngModel)] = "updatedItem.unit"></ng-select>
+                      <ng-select [items]="allUnits" name="unit" [(ngModel)] = "updatedItem.unit" #unitUpdate="ngModel" required></ng-select>
+
+                      <div *ngIf="unitUpdate.touched && unitUpdate.errors">
+                        <div class="absolute alertDiv nameErrorMargin" *ngIf="unitUpdate.errors.required" > Value Required !</div>
+                      </div>
+
                   </div>
+
                   <div class="col">
-                      <button type="submit" class="btn btn-primary btn-sm my-0 noMargin" >Update Item</button>
+                      <div class="incDecArrows text-center" (click)="onIncrement(updatedItem,'perunitprice')">
+                        <i class="arrow up"></i>
+                      </div>
+                      <input #perunitprice="ngModel"  class="form-control fontSize14 noMargin noPadding form-control-sm" min=0 type="number"  name="perunitprice" [(ngModel)] = "updatedItem.perunitprice" placeholder="Per unit cost" required/>
+                      <div class="incDecArrows text-center" (click)="onDecrement(updatedItem,'perunitprice')">
+                        <i class="arrow down"></i>
+                      </div>
+                      <div *ngIf="perunitprice.touched && perunitprice.errors">
+                        <div class="absolute alertDiv" *ngIf="perunitprice.errors.required" > Value Required !</div>
+                      </div>
                   </div>
+
+
+                  <div class="col">
+                      <button type="submit" class="btn btn-primary btn-sm my-0 noMargin" [disabled]="!itemUpdateForm.valid">Update Item</button>
+                  </div>
+
                 </form>
       <!--Table-->
             </div>
@@ -82,19 +221,23 @@
                             <th>Min Qty</th>
                             <th>Max Qty</th>
                             <th>Ordered Qty</th>
+                            <th>Cost Per Unit</th>
                             <th>Edit</th>
                             <th>Remove</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of inventoryArray; let i = index;">
+                        <tr *ngFor="let item of inventoryArray; let i = index;"
+                            [ngClass]="{
+                                'rgba-red-light':item.qtyPresent <= item.minQty
+                            }">
                             <th scope="row">{{i+1}}</th>
                             <td>{{item.itemname}}</td>
                             <td>{{item.qtyPresent +" "+ item.unit}}</td>
                             <td>{{item.minQty +" "+ item.unit}}</td>
                             <td>{{item.maxQty +" "+ item.unit}}</td>
                             <td>{{item.orderedQty +" "+ item.unit }}</td>
+                            <td>{{item.perunitprice +" Rs/"+ item.unit }}</td>
                             <td><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click) = "updateItem(item)">Edit</button></td>
                             <td><button type="button" class="btn btn-danger btn-sm my-0 noMargin" (click) = "deleteItem(item.id)">Remove</button></td>
                         </tr>

@@ -36,23 +36,30 @@ export class InventoryComponent implements OnInit {
   }
 
   onSubmit(formData){
+
     this.isUpdateItem = false;
     this.inventoryService.post(formData.value).subscribe(result => {
       if(result.success){
         formData.value['id'] = result.data;
-        let newItem = formData.value;
+        let newItem = Object.assign({}, formData.value);
+        this.inventoryArray.push(newItem);
 
-        this.inventoryArray.push();
         if((newItem.qtyPresent <= newItem.minQty ) && (newItem.orderedQty == 0)){
           this.lessQtyItems.push(newItem)
         }
 
+        if(newItem.orderedQty != 0){
+          this.orderedItems.push(newItem)
+        }
+
         this.toastr.success('Item Added in inventory' ,"Success" , {showCloseButton : true});
-        formData.reset();
+        formData.resetForm();
+
       }else{
         this.toastr.error('Unable to add Item .. ' ,"Error" , {showCloseButton : true});
       }
     })
+
   }
 
   updateItem(itemToUpdate){
@@ -78,7 +85,6 @@ export class InventoryComponent implements OnInit {
             this.inventoryArray = this.inventoryArray.filter( item => item.id !== id);
             this.lessQtyItems = this.lessQtyItems.filter( item => item.id !== id);
             this.orderedItems = this.orderedItems.filter( item => item.id !== id);
-
             this.toastr.info('Item removed from inventory' ,"Success" , {showCloseButton : true});
         }else{
             this.toastr.error('Unable to Delete Item .. ' ,"Error" , {showCloseButton : true});
@@ -152,7 +158,20 @@ export class InventoryComponent implements OnInit {
         this.toastr.error('Unable to add Item .. ' ,"Error" , {showCloseButton : true});
       }
     })
+  }
 
+  onIncrement(formObj , key){
+    if(formObj[key])
+      formObj[key] = formObj[key] + +1;
+    else
+      formObj[key] = 1;
+  }
+
+  onDecrement(formObj , qtyPresent){
+    if(formObj[qtyPresent] && formObj[qtyPresent] != 0)
+      formObj[qtyPresent] = formObj[qtyPresent] - +1;
+    else
+      formObj[qtyPresent] = 0;
   }
 
 }
