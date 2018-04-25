@@ -7,6 +7,7 @@ import { NotFoundError } from '../../common/errors/not-found-error';
 import { LoginService } from '../../services/childServices/login.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { environment } from '../../../environments/environment';
+import { MenuItemService } from '../../services/childServices/menu-item.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService : LoginService , private router:Router,public toastr: ToastsManager) {
+  constructor(private loginService : LoginService , private router:Router,public toastr: ToastsManager,private menuService:MenuItemService) {
   }
 
   ngOnInit() {
@@ -28,8 +29,7 @@ export class LoginComponent implements OnInit {
       if(responseData.success){
         sessionStorage.setItem('userName',responseData.data.userName);
         sessionStorage.setItem('tableCount',responseData.data.tableCount);
-
-        this.router.navigateByUrl('/home/orderpanel');
+        this.router.navigateByUrl('/home/dashboard');
       }else{
         this.toastr.error(responseData.message, 'Error!' ,{showCloseButton : true});
       }

@@ -5,8 +5,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { materialObject }  from "../../../../common/interfaces/interfaces";
 import { MenuItemService } from '../../../../services/childServices/menu-item.service';
 
-import { diff, addedDiff, deletedDiff, updatedDiff, detailedDiff } from 'deep-object-diff';
-
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-menu-management',
@@ -18,26 +17,28 @@ export class MenuManagement implements OnInit {
   allMenuItems:any = [];
 	menuDetails: any = {};
 
+  availableAtOptions = ["BreakFast" , "Lunch" ,"Dinner" ,"All-Time"]
+
   menuItemMaterials:any = [];
   menuMaterialObject:any = {};
   allMaterialNames:any = [];
+  allMaterialsData:any = [];
 
 	itemIndex: number = -1;
   viewAddNewMenuPanel:boolean = false;
   isEditMaterial:boolean = false;
   allUnits = ['Kg','Gms','Liters'];
-
+  totalPricePerPlate:number = 0;
 
   constructor(private inventoryService : InventoryService , public toastr: ToastsManager , private menuService:MenuItemService ) { }
 
   ngOnInit() {
     this.inventoryService.getAll().subscribe((result) => {
       this.allMaterialNames = result.data.map(value => value.itemname);
+      this.allMaterialsData = result.data;
     });
 
-    this.menuService.getAll().subscribe((result)=> {
-        this.allMenuItems = result['data'];
-    });
+    this.allMenuItems = this.menuService.getMenuData();
 
   }
 
@@ -45,9 +46,6 @@ export class MenuManagement implements OnInit {
 
     let newMenuItem = Object.assign({}, formData.value);
     newMenuItem['materialUsed'] = this.menuItemMaterials;
-
-    newMenuItem["isfavourite"] = newMenuItem["isfavourite"]  ? newMenuItem["isfavourite"].toString() : "false" ;
-    newMenuItem["isdisabled"] = newMenuItem["isfavourite"]  ? newMenuItem["isdisabled"].toString() : "false" ;
 
     if(!newMenuItem.id){
         newMenuItem["id"] = "";
@@ -73,16 +71,16 @@ export class MenuManagement implements OnInit {
           formData.reset();
       })
     }
+    this.openMenuItemPanel()
+
   }
 
   updateMenuItem(item){
 
     this.menuDetails = item;
-    this.menuDetails["isfavourite"] = this.menuDetails["isfavourite"] == "true" ? true : false ;
-    this.menuDetails["isdisabled"] = this.menuDetails["isdisabled"] == "true" ? true : false ;
     this.menuItemMaterials = item['materialUsed'];
     this.viewAddNewMenuPanel = true;
-
+    this.calculateCost();
   }
 
   deleteMenuItem(itemId){
@@ -98,12 +96,14 @@ export class MenuManagement implements OnInit {
   }
 
   addMaterial(materialData){
+
     if(!this.isEditMaterial)
       this.menuItemMaterials.push(materialData.value);
     else{
       this.menuItemMaterials[this.itemIndex] = materialData.value;
       this.itemIndex = -1;
     }
+    this.calculateCost();
     this.isEditMaterial = false;
     materialData.reset();
   }
@@ -116,6 +116,32 @@ export class MenuManagement implements OnInit {
 
   removeMaterial(index){
     this.menuItemMaterials.splice(index,1);
+    this.calculateCost();
+  }
+
+  calculateCost(){
+
+    this.totalPricePerPlate = 0;
+
+    for(let i in this.menuItemMaterials){
+
+      let item = this.menuItemMaterials[i];
+      let itemDetails = this.allMaterialsData.filter((material) => material['itemname'] == item['materialname'] )[0];
+
+      if(itemDetails.unit == item.unit){
+        this.totalPricePerPlate = this.totalPricePerPlate + (item['qtyused']*itemDetails["perunitprice"])
+      }
+      else if(itemDetails.unit == "Kg" && item.unit == "Gms"){
+        this.totalPricePerPlate = this.totalPricePerPlate + ((item['qtyused']/1000)*itemDetails["perunitprice"])
+      }
+      else if(itemDetails.unit == "Gms" && item.unit == "Kg"){
+        this.totalPricePerPlate = this.totalPricePerPlate + ((item['qtyused']*1000)*itemDetails["perunitprice"])
+      }
+
+    }
+
+    this.totalPricePerPlate = this.totalPricePerPlate / parseInt(this.menuDetails.platesperday);
+
   }
 
 }

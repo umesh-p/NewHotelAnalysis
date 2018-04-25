@@ -30,6 +30,9 @@
                                   Cost Field can not be blank
                           </div>
                       </div>
+                      <div class="costPriceDiv" *ngIf="menuDetails.platesperday && menuDetails.platesperday > 0 ">
+                        Apprx Cost Price Per Plate : {{totalPricePerPlate | number:'2.1-2'}} Rs
+                      </div>
                       <input #sellingprice="ngModel" class="fontSize14 form-control " type="number" name="sellingprice" [(ngModel)]="menuDetails.sellingprice" placeholder="Selling Price Per Plate" required />
                       <div *ngIf="sellingprice.invalid && sellingprice.touched">
                           <div class="alert alert-danger fontSize13" *ngIf="sellingprice.errors.required">
@@ -60,13 +63,13 @@
                   <div class="row">
                     <div class="col">
                       <label for="availableAtBreakfast">
-                        <input  type="radio" id="availableAtBreakfast" class="option-input radio" value=1 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                        <input  type="radio" id="availableAtBreakfast" class="option-input radio" value='1' name="availableat" [(ngModel)]="menuDetails.availableat"/>
                             BreakFast
                       </label>
                     </div>
                     <div class="col">
                       <label for="availableAtLunch">
-                          <input type="radio" id="availableAtLunch" class="option-input radio" value=2 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                          <input type="radio" id="availableAtLunch" class="option-input radio" value='2' name="availableat" [(ngModel)]="menuDetails.availableat"/>
                             Lunch
                         </label>
                     </div>
@@ -74,13 +77,13 @@
                   <div class="row">
                     <div class="col">
                       <label for="availableAtDinner">
-                          <input  type="radio" id="availableAtDinner"  class="option-input radio" value=3 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                          <input  type="radio" id="availableAtDinner"  class="option-input radio" value = '3'  name="availableat" [(ngModel)]="menuDetails.availableat"/>
                             Dinner
                         </label>
                     </div>
                     <div class="col">
                       <label for="availableAtAll">
-                          <input  type="radio" id="availableAtAll" class="option-input radio" value=4 name="availableat" [(ngModel)]="menuDetails.availableat"/>
+                          <input  type="radio" id="availableAtAll" class="option-input radio" value = '4' name="availableat" [(ngModel)]="menuDetails.availableat"/>
                             All
                         </label>
                     </div>
@@ -99,7 +102,6 @@
                                 <th>Unit</th>
                                 <th class="text-center">Edit</th>
                                 <th class="text-center">Delete</th>
-
                             </tr >
                         </thead>
 
@@ -112,8 +114,10 @@
                             <td class="text-center"><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click)="editMaterialItem(item,i)">Edit</button></td>
                             <td class="text-center"><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click)="removeMaterial(i)">Remove</button></td>
                           </tr>
+
                         </tbody>
                       </table>
+
                       <form class="materialForm" #materialItem='ngForm' (ngSubmit)="addMaterial(materialItem)">
                             <div class="row">
                                 <div class="col"><ng-select autofocus [items]="allMaterialNames" name="materialname" [(ngModel)]="menuMaterialObject.materialname" #selectedMaterial = "ngModel" required placeholder="Material"></ng-select></div>
@@ -146,8 +150,9 @@
                             <th>Item Name</th>
                             <th>Cost Price</th>
                             <th>Selling Price</th>
-                            <th>Is Fevourite</th>
-                            <th>Not available Today</th>
+                            <th>Is Favourite</th>
+                            <th>Disable Today</th>
+                            <th>Available For</th>
                             <th>Edit</th>
                             <th>Remove</th>
                         </tr>
@@ -158,9 +163,10 @@
                             <td>{{item.name}}</td>
                             <td>{{item.costprice}}</td>
                             <td>{{item.sellingprice}}</td>
-                            <td>{{item.isfavourite}}</td>
-                            <td>{{item.availableat}}</td>
-                            <td><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click) = "updateMenuItem(item)">Edit</button></td>
+                            <td><input  type="checkbox" class="option-input checkbox"  name="isfavourite" [(ngModel)]="item.isfavourite"/></td>
+                            <td><input  type="checkbox" class="option-input checkbox" name="isdisabled" [(ngModel)]="item.isdisabled" /></td>
+                            <td>{{availableAtOptions[item.availableat - 1]}}</td>
+                            <td><button type="button" class="btn btn-primary btn-sm my-0 noMargin" (click) = "updateMenuItem(item)" [disabled] = "viewAddNewMenuPanel">Edit</button></td>
                             <td><button type="button" class="btn btn-danger btn-sm my-0 noMargin" (click) = "deleteMenuItem(item.id)">Remove</button></td>
                         </tr>
                     </tbody>

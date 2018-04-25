@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItemService } from '../../../../services/childServices/menu-item.service';
 
 @Component({
   selector: 'app-order',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private menuService:MenuItemService) { }
 
   ngOnInit() {
+    //console.log(this.menuService.getEnabledMenuItems());
   }
 
 }

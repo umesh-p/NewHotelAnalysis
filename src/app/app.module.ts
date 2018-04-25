@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule, NO_ERRORS_SCHEMA, ErrorHandler} from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -21,12 +21,9 @@ import { MenuDataService } from './services/childServices/menu-data.service';
 import { InventoryService } from './services/childServices/inventory.service';
 import { MenuItemService } from './services/childServices/menu-item.service';
 
-
-
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
-
 
 import { OrderComponent } from './components/home/childrenComp/order/order.component';
 import { DashboardComponent } from './components/home/childrenComp/dashboard/dashboard.component';
@@ -35,9 +32,9 @@ import { ReviewComponent } from './components/home/childrenComp/review/review.co
 import { SettingComponent } from './components/home/childrenComp/setting/setting.component';
 import { InventoryComponent } from './components/home/childrenComp/inventory/inventory.component';
 import { MenuManagement } from './components/home/childrenComp/menu-management/menu-management.component';
+import { DailyPreparationsComponent } from './components/home/childrenComp/daily-preparations/daily-preparations.component';
 
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
-import { DailyPreparationsComponent } from './components/home/childrenComp/daily-preparations/daily-preparations.component';
 
 
 @NgModule({

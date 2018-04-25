@@ -1,5 +1,10 @@
 [
   {
+    "name":"Dashboard",
+    "url":"dashboard",
+    "icon":"fa fa-area-chart"
+  },
+  {
     "name":"Order Panel",
     "url":"orderpanel",
     "icon":"fa fa-coffee"
@@ -18,11 +23,6 @@
     "name":"Manage Menu",
     "url":"manageMenu",
     "icon":"fa fa-th-list"
-  },
-  {
-    "name":"Dashboard",
-    "url":"dashboard",
-    "icon":"fa fa-area-chart"
   },
   {
     "name":"Analysis",

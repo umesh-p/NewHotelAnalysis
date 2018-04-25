@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItemService } from '../../services/childServices/menu-item.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,10 @@ export class HomeComponent implements OnInit {
 
   showSideNav:boolean = true;
 
-  constructor(){}
+  constructor(private menuService:MenuItemService){}
 
   ngOnInit(){
-
+    
   }
 
 }
