@@ -7,7 +7,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient } from '@angular/common/http';
-
+import { ChartsModule } from 'ng4-charts/ng4-charts';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './router/app-routing.module';
@@ -20,6 +20,7 @@ import { LoginService } from './services/childServices/login.service';
 import { MenuDataService } from './services/childServices/menu-data.service';
 import { InventoryService } from './services/childServices/inventory.service';
 import { MenuItemService } from './services/childServices/menu-item.service';
+import { ReviewService } from './services/childServices/review.service';
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -61,7 +62,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     HttpModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
-    NgSelectModule
+    NgSelectModule,
+    ChartsModule
     ],
   providers: [
     { provide : ErrorHandler , useClass:GlobalErrorHandler},
@@ -70,7 +72,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     MenuDataService,
     InventoryService,
     MenuItemService,
-    HttpClient
+    HttpClient,
+    ReviewService
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

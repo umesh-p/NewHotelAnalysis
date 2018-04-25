@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
       if(responseData.success){
         sessionStorage.setItem('userName',responseData.data.userName);
         sessionStorage.setItem('tableCount',responseData.data.tableCount);
+        sessionStorage.setItem('zomatoid',responseData.data.zomatoid);
+        
         this.router.navigateByUrl('/home/dashboard');
       }else{
         this.toastr.error(responseData.message, 'Error!' ,{showCloseButton : true});

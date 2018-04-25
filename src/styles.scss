@@ -1,5 +1,7 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
-
+body{
+  font-weight: 400;
+}
 .overflowYAuto{
   overflow-y: auto;
 }
@@ -58,6 +60,11 @@
   visibility: hidden;
 }
 
+
+/*overfloe  scroll */
+.overflowY{
+  overflow-y : scroll;
+}
 
 /*
  *  STYLE 4

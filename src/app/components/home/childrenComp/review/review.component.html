@@ -1,3 +1,41 @@
-<p>
-  review works!
-</p>
+
+<div class="row full-height" *ngIf="reviewData">
+  <div class="col-lg-5 col-xl-5 mb-2 overflowY style-4">
+    <section class="padding10">
+        <div class="row reviewDiv padding10" *ngFor="let reviewObj of reviewData.user_reviews" [ngClass]="{
+                'negativeBorder' : reviewObj.review.rating <= 2,
+                'positiveBorder' : reviewObj.review.rating > 2
+            }">
+            <div class="col-lg-2 col-xl-2 mb-2 noPadding">
+                    <img src="{{reviewObj.review.user.profile_image}}" class="img-fluid fixedImage" alt="First sample image">
+            </div>
+            <div class="col-lg-10 col-xl-10 ml-xl-10 mb-10">
+              <p class="marginBottom5">by
+                  <a class="font-weight-bold fontSize15">{{reviewObj.review.user.name}}</a>,       {{reviewObj.review.review_time_friendly}}</p>
+                <p class="fontSize14 marginBottom5">{{reviewObj.review.review_text}}</p>
+                <div class="feed-footer">
+                   <a class="like fontSize13">
+                       <i class="fa fa-heart" ></i>
+                       <span>{{reviewObj.review.likes}} likes</span>
+                   </a>
+               </div>
+            </div>
+        </div>
+
+    </section>
+  </div>
+
+  <div class="col-lg-7 col-xl-7 mb-7">
+    <div style="display: block">
+        <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+  </div>
+
+</div>
