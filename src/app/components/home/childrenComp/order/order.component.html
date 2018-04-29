@@ -1,1 +1,29 @@
- 
+<div class="row full-height">
+
+  <div class="col-md-12 col-lg-12 col-xl-12">
+    <div class="card testimonial-card overflowY style-4 noBorderRadius">
+        <div class="card-body noPadding">
+
+
+        <div class="orderPanelTab row rgba-indigo-slight text-center noMargin"  >
+              <div class="col-md-3 col-lg-2 col-xl-2 pointer p-2 pt-3" [class.activeTab] = "tabActive=='tableorder' " (click)="tabActive='tableorder' ">Table Order</div>
+              <div class="col-md-3 col-lg-2 col-xl-2 pointer p-2 pt-3" [class.activeTab] = "tabActive=='parcel' " (click)="tabActive='parcel' ">Parcel Orders</div>
+              <div class="col-md-3 col-lg-2 col-xl-2 pointer p-2 pt-3"[class.activeTab] = "tabActive=='online' " (click)="tabActive='online' ">Online Orders</div>
+        </div>
+
+
+        <div class="tableOrders" *ngIf="tabActive=='tableorder'">
+
+        </div>
+        <div class="parcelOrders" *ngIf="tabActive=='parcel'">
+
+        </div>
+        <div class="onlineOrders" *ngIf="tabActive=='online'">
+
+        </div>
+
+
+        </div>
+    </div>
+  </div>
+</div>

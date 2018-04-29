@@ -1,6 +1,6 @@
 
 <div class="row full-height" *ngIf="reviewData">
-  <div class="col-lg-5 col-xl-5 mb-2 overflowY style-4">
+  <div class="col-md-5 col-lg-5 col-xl-4 mb-2 overflowY style-4">
     <section class="padding10">
         <div class="row reviewDiv padding10" *ngFor="let reviewObj of reviewData.user_reviews" [ngClass]="{
                 'negativeBorder' : reviewObj.review.rating <= 2,
@@ -25,17 +25,83 @@
     </section>
   </div>
 
-  <div class="col-lg-7 col-xl-7 mb-7">
-    <div style="display: block">
-        <canvas baseChart
-                [datasets]="barChartData"
-                [labels]="barChartLabels"
-                [options]="barChartOptions"
-                [legend]="barChartLegend"
-                [chartType]="barChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+  <div class="col-md-5 col-lg-7 col-xl-8 mb-2 mt-2">
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-9">
+        <div class="card">
+             <div class="card-body">
+                 <h4 class="card-title">Review</h4>
+                 <div class="row">
+                   <div class="col text-center rightBorder">
+                     <circle-progress
+                       [percent]="reviewData.reviews_count"
+                       [radius]="40"
+                       [outerStrokeWidth]="5"
+                       [innerStrokeWidth]="3"
+                       [outerStrokeColor]="'#4882c2'"
+                       [innerStrokeColor]="'#e7e8ea'"
+                       [animation]="true"
+                       [animationDuration]="300"
+                       [showUnits]="false"
+                       [showSubtitle]="false"
+                     ></circle-progress>
+                   </div>
+                   <div class="col text-center rightBorder">
+                     <circle-progress
+                       [percent]="reviewData.reviews_shown"
+                       [radius]="40"
+                       [outerStrokeWidth]="5"
+                       [innerStrokeWidth]="3"
+                       [outerStrokeColor]="'#78C000'"
+                       [innerStrokeColor]="'#C7E596'"
+                       [animation]="true"
+                       [animationDuration]="300"
+                       [showUnits]="false"
+                       [showSubtitle]="false"
+                     ></circle-progress>
+                   </div>
+                   <div class="col text-center rightBorder">
+                     <circle-progress
+                       [percent]="reviewData.positiveReviews"
+                       [radius]="40"
+                       [outerStrokeWidth]="5"
+                       [innerStrokeWidth]="3"
+                       [outerStrokeColor]="'#32CD32'"
+                       [innerStrokeColor]="'#32CD32'"
+                       [animation]="true"
+                       [animationDuration]="300"
+                       [showUnits]="false"
+                       [showSubtitle]="false"
+                     ></circle-progress>
+                   </div>
+                   <div class="col text-center">
+                      <circle-progress
+                        [percent]="reviewData.negativeReivews"
+                        [radius]="40"
+                        [outerStrokeWidth]="5"
+                        [innerStrokeWidth]="3"
+                        [outerStrokeColor]="'#FF6347'"
+                        [innerStrokeColor]="'#FF6347'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                        [showUnits]="false"
+                        [showSubtitle]="false"
+                      ></circle-progress>
+                   </div>
+                 </div>
+
+                 <div class="row">
+                      <div class="col fontSize14 text-center">Total Reviews</div>
+                      <div class="col fontSize14 text-center">Shown Reviews</div>
+                      <div class="col fontSize14 text-center">Positive Reviews</div>
+                      <div class="col fontSize14 text-center">Negative Reviews</div>
+                 </div>
+
+             </div>
+         </div>
       </div>
+    </div>
   </div>
 
 </div>

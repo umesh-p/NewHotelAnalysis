@@ -8,6 +8,8 @@ import { MenuItemService } from '../../../../services/childServices/menu-item.se
 })
 export class OrderComponent implements OnInit {
 
+  tabActive:string;
+
   constructor(private menuService:MenuItemService) { }
 
   ngOnInit() {

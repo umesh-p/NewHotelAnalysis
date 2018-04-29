@@ -36,6 +36,7 @@ import { MenuManagement } from './components/home/childrenComp/menu-management/m
 import { DailyPreparationsComponent } from './components/home/childrenComp/daily-preparations/daily-preparations.component';
 
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     NgSelectModule,
-    ChartsModule
+    ChartsModule,
+    NgCircleProgressModule.forRoot({})
     ],
   providers: [
     { provide : ErrorHandler , useClass:GlobalErrorHandler},

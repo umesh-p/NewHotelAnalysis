@@ -1,11 +1,165 @@
+<div class="row">
+
+  <div class="col-md-8 col-lg-8 col-xl-9">
+    <div class="card card-body noBorderRadius noPadding full-height hiddenOverflow overflowY style-4 mt-2 mb-2">
+      <div class="card-header headersColor lighten-1 white-text">Dashboard</div>
+
+      <div class="row pl-4 pr-4 pt-2">
+        <div class="col-md-12 col-lg-12 col-xl-8">
+            <div style="display: block;">
+            <canvas baseChart
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </div>
+        <div class="d-none d-xl-block col-xl-4">
+           <div class="card mt-4">
+               <div class="card-body">
+                     <h5 class="card-title"><strong>{{ "Order Statistics" | uppercase }}</strong></h5>
+                   <hr>
+                     <div class="card-text ">
+                      <div class="row p-2">
+                        <div class="col-xl-7 fontSize16 fontWeight500 ">Orders</div>
+                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">1,344</div>
+                      </div>
+                      <div class="row p-2">
+                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                      </div>
+                      <div class="row p-2">
+                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                      </div>
+                      <div class="row p-2">
+                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                      </div>
+                      <div class="row p-2 mb-2">
+                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                      </div>
+                  </div>
+                   <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
+               </div>
+           </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="row height350 overflowY style-4 pl-4 pr-4 pt-2">
+
+            <div class="col-xl-4 col-lg-6 col-md-6 ">
+                    <div class="card ">
+                        <div class="card-body">
+                          <h5 class="card-title rgba-red-slight">{{ "Less Stock Items" | uppercase }}</h5>
+                          <hr>
+                          <ul class="list-group">
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                  Cras justo odio
+                                  <span class="badge badge-pill red">14</span>
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                  Dapibus ac facilisis in
+                                  <span class="badge badge-pill red">2</span>
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                  Morbi leo risus
+                                  <span class="badge badge-pill red">1</span>
+                              </li>
+                          </ul>
+                            <a routerLink="" class="btn btn-primary">See Items</a>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 ">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h5 class="card-title rgba-green-slight">{{ "Ordered Items" | uppercase }}</h5>
+                            <hr>
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Cras justo odio
+                                    <span class="badge badge-pill green">14</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Dapibus ac facilisis in
+                                    <span class="badge badge-pill green">2</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Morbi leo risus
+                                    <span class="badge badge-pill green">1</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="btn btn-primary">See Items</a>
+                        </div>
+                </div>
+
+
+            </div>
 
 
 
 
+      </div>
+      <hr>
 
-<iframe src="http://www.igoogleportal.com/shindig/gadgets/ifr?url=http://hosting.gmodules.com/ig/gadgets/file/109787730588197067267/hindi_panchang.xml&lang=en&country=INDIA"
-        height="270"
-        width="273"
-        scrolling="no"
-       frameborder="0">
-</iframe>
+
+
+  </div>
+</div>
+  <div class="col-md-4 col-lg-4 col-xl-3">
+
+    <div class="card mt-2 mb-2">
+        <div class="card-header headersColor lighten-1 white-text">Hindu Panchang</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ "Check Out Today's Panchang" | uppercase }}</h5>
+            <p class="card-text text-center">
+              <iframe src="http://www.igoogleportal.com/shindig/gadgets/ifr?url=http://hosting.gmodules.com/ig/gadgets/file/109787730588197067267/hindi_panchang.xml&lang=en&country=INDIA"
+                    height="270"
+                    width="275"
+                    scrolling="no"
+                   frameborder="0">
+            </iframe></p>
+        </div>
+    </div>
+
+    <div class="card mt-1 d-xl-none">
+        <div class="card-body">
+            <h5 class="card-title"><strong>{{ "Order Statistics" | uppercase }}</strong></h5>
+            <hr>
+              <div class="card-text ">
+
+               <div class="row p-2">
+                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500 ">Orders</div>
+                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">1,344</div>
+               </div>
+               <div class="row p-2">
+                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+               </div>
+               <div class="row p-2">
+                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+               </div>
+               <div class="row p-2">
+                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+               </div>
+               <div class="row p-2 mb-2">
+                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+               </div>
+           </div>
+            <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
+        </div>
+    </div>
+
+
+  </div>
+</div>
