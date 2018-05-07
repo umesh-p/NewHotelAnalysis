@@ -1,12 +1,32 @@
+<div class="row full-height">
 
-Priyanka
+  <div class="card col-md-10 col-lg-10 col-xl-10  offset-md-1 offset-lg-1 offset-xl-1 noPadding">
+    <h5 class="card-header primary-color white-text">Hotel Settings And Numbers</h5>
+    <div class="card-body">
 
-Deepli
+      <div class="row mt-3">
+        <div class="col-md-3 col-lg-3 col-xl-2 VAlignChildren"><span>Enter No Of Tables :</span></div>
+        <div class="col-md-4 col-lg-4 col-xl-3"><input class="form-control fontSize14 form-control-sm noMargin noPadding" type="number" name="tableNumber" [(ngModel)]="tableNumber" placeholder="Enter Table Number" /></div>
+        <div class="col-md-2 col-lg-2 col-xl-1"><button type="button " class="btn btn-outline-info waves-effect btn-sm" (click)="addTableCount(tableNumber)">Add</button></div>
 
-kaushiki
+      </div>
+<hr>
 
-monali
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-2 VAlignChildren"><span>Insert New Category :</span></div>
+        <div class="col-md-4 col-lg-4 col-xl-3"><input #categoryInput class="form-control fontSize14 form-control-sm noMargin noPadding" type="text" name="newCategory" [(ngModel)]="newCategory" placeholder="Add New Food Category" /></div>
+        <div class="col-md-2 col-lg-2 col-xl-1"><button type="button" class="btn btn-outline-info waves-effect btn-sm" (click)="addNewFoodCategory(categoryInput)">Add</button></div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-3 col-lg-3 col-xl-2 VAlignChildren"><span>All Categories Present :</span></div>
+        <div class="col-md-4 col-lg-4 col-xl-3">
+          <ul class="list-group">
+            <li class="list-group-item fontSize14" *ngFor="let category of allCategories">{{category.name | uppercase}}</li>
+          </ul>
+        </div>
+      </div>
+    <hr>
 
-shweta
-
-kirti
+    </div>
+  </div>
+</div>

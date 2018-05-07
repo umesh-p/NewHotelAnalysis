@@ -2,7 +2,7 @@
 
   <div class="col-md-12 col-lg-12 col-xl-12">
     <div class="card testimonial-card overflowY style-4 noBorderRadius">
-        <div class="card-body noPadding">
+        <div class="card-body noPadding full-height">
 
 
         <div class="orderPanelTab row rgba-indigo-slight text-center noMargin"  >
@@ -12,17 +12,144 @@
         </div>
 
 
-        <div class="tableOrders" *ngIf="tabActive=='tableorder'">
+        <div class="tableOrders panelHeight " *ngIf="tabActive =='tableorder'">
+                <div class="row noMargin full-height">
+                  <div class="card noBorderRadius col-lg-12 col-md-12 col-xl-12">
+                    <div class="card-body text-center full-height noPadding" >
+                        <div class="row full-height">
 
+                            <div class="col-md-5 col-lg-4 col-xl-3 noPadding noMargin menuList full-height">
+                              <div class="orderListHeader"> {{"menu" | uppercase}} </div>
+
+                              <div class="listContainer overflowY style-4">   </div>
+                            </div>
+
+                            <div class="col-md-7 col-lg-8 col-xl-9 full-height noPadding">
+                              <div class="tableIconsDiv">
+
+                              </div>
+                              <div class="row orderContainer noMargin">
+                                <div class="col-md-5 col-lg-5 col-xl-5">
+
+                                </div>
+                                <div class="col-md-7 col-lg-7 col-xl-7">
+
+                                </div>
+
+                              </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
         </div>
-        <div class="parcelOrders" *ngIf="tabActive=='parcel'">
+        <div class="parcelOrders panelHeight" *ngIf="tabActive =='parcel'">
+                    <div class="row p-4 noMargin full-height">
+                      <div class="card noBorderRadius col-lg-12 col-md-12 col-xl-12">
+                        <div class="card-body text-center noPadding">
 
+
+
+
+
+                        </div>
+                      </div>
+                    </div>
         </div>
-        <div class="onlineOrders" *ngIf="tabActive=='online'">
+        <div class="onlineOrders panelHeight full-height " *ngIf="tabActive =='online'">
+              <div class="card-body text-center full-height">
+                    <div class="row full-height">
+                        <div class="col-md-5 col-lg-4 col-xl-4 rightBorder full-height overflowY style-4">
+                              <div class="orderListHeader">
+                                    {{"All Online Orders List" | uppercase}}
+                              </div>
+                              <div class="ordersList">
 
-        </div>
+                                  <div class="list-group">
+                                    <div class="list-group-item list-group-item-action flex-column text-left mb-2"
+                                         [class.activeTab] = "activeOrder == i"
+                                         *ngFor="let order of allOnlineOrders;let i = index;"
+                                         (click)="showOrderDetails(i)">
+
+                                      <div class="d-flex w-100 justify-content-between">
+                                        <span class="mb-1 fontSize14"><strong>Order Number : {{order.orderNumber}}</strong></span>
+                                        <small><h5><span class="badge pink">3 Minutes ago </span></h5></small>
+                                      </div>
+                                      <hr class="noMargin">
+                                      <p class="mb-1 mt-2 fontSize14 "><b>Customer Name : {{order.orderName}}</b></p>
+                                      <small><b>Order From : {{order.orderSource}}</b></small>
+                                    </div>
+                                  </div>
+                              </div>
+                        </div>
+                        <div class="col-md-7 col-lg-8 col-xl-8 full-height">
+                          <div class="row full-height" >
+                            <div class="offset-lg-2 offset-xl-2 offset-md-1 col-md-10 col-lg-8 col-xl-8" style="height:98%;">
+
+                              <div class="card border-secondary noBorderRadius ">
+                                  <div class="card-body text-secondary noPadding full-height">
+                                      <div class="orderListHeader">
+                                          {{ "Order Number" | uppercase }} : {{detailOrder.orderNumber}}
+                                      </div>
+
+                                      <div class="orderSubHeader">
+                                          <span class="float-left ml-3"><b>Customer Name : {{detailOrder.orderName}}</b></span>
+                                          <span class="float-right mr-3 mt-3"><h5><span class="badge amber darken-2">3 Minutes ago </span></h5></span>
+                                      </div>
+
+                                      <div class="orderBody overflowY style-4">
+                                        <!--Table-->
+                                        <table class="table">
+
+                                            <!--Table head-->
+                                            <thead class="blue-grey lighten-4">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Item Name</th>
+                                                    <th>Item Qty</th>
+                                                    <th>Item Price</th>
+                                                </tr>
+                                            </thead>
+                                          <!--Table head-->
+
+                                            <!--Table body-->
+                                            <tbody>
+                                                <tr *ngFor="let item of detailOrder.orderItems; let i = index;">
+                                                    <th scope="row">{{i + 1}}</th>
+                                                    <td>{{item.itemName}}</td>
+                                                    <td>{{item.qty}}</td>
+                                                    <td>{{item.price * item.qty | number:'2.2'}} Rs</td>
+                                                </tr>
+
+                                            </tbody>
+                                            <!--Table body-->
+
+                                        </table>
+                                        <!--Table-->
+                                      </div>
+
+                                      <div class="orderSubFooter">
+                                        <span class="float-left ml-3"><b>Total Bill Amount : {{detailOrder.totalBill | number:'2.2'}} Rs</b></span>
+                                        <span class="float-right mr-3"><button type="button" class="btn btn-outline-warning waves-effect btn-sm" (click)="onlineOrderDispatched(detailOrder)" >Order Dispatched</button></span>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+              </div>
 
 
+          </div>
         </div>
     </div>
   </div>

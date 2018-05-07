@@ -1,7 +1,7 @@
 <div class="row">
 
-  <div class="col-md-8 col-lg-8 col-xl-9">
-    <div class="card card-body noBorderRadius noPadding full-height hiddenOverflow overflowY style-4 mt-2 mb-2">
+  <div class="col-md-8 col-lg-8 col-xl-9 full-height hiddenOverflow overflowY style-4">
+    <div class="card card-body noBorderRadius noPadding  mt-2 mb-2">
       <div class="card-header headersColor lighten-1 white-text">Dashboard</div>
 
       <div class="row pl-4 pr-4 pt-2">
@@ -24,26 +24,31 @@
                    <hr>
                      <div class="card-text ">
                       <div class="row p-2">
-                        <div class="col-xl-7 fontSize16 fontWeight500 ">Orders</div>
-                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">1,344</div>
+                        <div class="col-xl-7 fontSize15 fontWeight500 ">Orders</div>
+                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">1,344</div>
                       </div>
                       <div class="row p-2">
-                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                       </div>
                       <div class="row p-2">
-                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                       </div>
                       <div class="row p-2">
-                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
+                      </div>
+                      <div class="row p-2">
+                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                       </div>
                       <div class="row p-2 mb-2">
-                        <div class="col-xl-7 fontSize16 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
+                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                       </div>
                   </div>
+
                    <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
                </div>
            </div>
@@ -51,70 +56,64 @@
       </div>
       <hr>
 
-      <div class="row height350 overflowY style-4 pl-4 pr-4 pt-2">
-
+      <div class="row height350  pl-4 pr-4 pt-2">
+        <div class="col-xl-4 d-none d-xl-block">
+                <div class="card ">
+                    <div class="card-body cardHeight style-4">
+                      <div style="display: block">
+                        <canvas baseChart height="245" width="300"
+                                    [data]="doughnutChartData"
+                                    [labels]="doughnutChartLabels"
+                                    [chartType]="doughnutChartType"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"></canvas>
+                      </div>
+                    </div>
+                </div>
+        </div>
             <div class="col-xl-4 col-lg-6 col-md-6 ">
                     <div class="card ">
-                        <div class="card-body">
-                          <h5 class="card-title rgba-red-slight">{{ "Less Stock Items" | uppercase }}</h5>
+                        <div class="card-body cardHeight style-4">
+                          <h5 class="card-title">{{ "Less Stock Items" | uppercase }}</h5>
                           <hr>
                           <ul class="list-group">
-                              <li class="list-group-item d-flex justify-content-between align-items-center">
-                                  Cras justo odio
-                                  <span class="badge badge-pill red">14</span>
+                              <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of lessQtyItems">
+                                  {{item.itemname | uppercase}}
+                                  <span class="badge badge-pill red">{{item.qtyPresent + " "+ item.unit}} in stock</span>
                               </li>
-                              <li class="list-group-item d-flex justify-content-between align-items-center">
-                                  Dapibus ac facilisis in
-                                  <span class="badge badge-pill red">2</span>
-                              </li>
-                              <li class="list-group-item d-flex justify-content-between align-items-center">
-                                  Morbi leo risus
-                                  <span class="badge badge-pill red">1</span>
-                              </li>
+
                           </ul>
-                            <a routerLink="" class="btn btn-primary">See Items</a>
+                          <hr>
+                          <div class="float-right">
+                            <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
+                          </div>
                         </div>
                     </div>
-
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 ">
-                    <div class="card ">
+                    <div class="card cardHeight style-4">
                         <div class="card-body">
-                            <h5 class="card-title rgba-green-slight">{{ "Ordered Items" | uppercase }}</h5>
+                            <h5 class="card-title ">{{ "Ordered Items" | uppercase }}</h5>
                             <hr>
                             <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Cras justo odio
-                                    <span class="badge badge-pill green">14</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Dapibus ac facilisis in
-                                    <span class="badge badge-pill green">2</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Morbi leo risus
-                                    <span class="badge badge-pill green">1</span>
-                                </li>
+                              <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of orderedItems">
+                                  {{item.itemname | uppercase}}
+                                  <span class="badge badge-pill green">{{item.orderedQty+ " "+ item.unit}} ordered</span>
+                              </li>
                             </ul>
-                            <a href="#" class="btn btn-primary">See Items</a>
+                            <hr>
+                            <div class="float-right">
+                              <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
+                            </div>
                         </div>
                 </div>
-
-
             </div>
-
-
-
-
       </div>
       <hr>
-
-
-
+      <div class="row height350  pl-4 pr-4 pt-2"></div>
   </div>
 </div>
   <div class="col-md-4 col-lg-4 col-xl-3">
-
     <div class="card mt-2 mb-2">
         <div class="card-header headersColor lighten-1 white-text">Hindu Panchang</div>
         <div class="card-body">
@@ -131,35 +130,32 @@
 
     <div class="card mt-1 d-xl-none">
         <div class="card-body">
-            <h5 class="card-title"><strong>{{ "Order Statistics" | uppercase }}</strong></h5>
+            <h5 class="card-title">{{ "Order Statistics" | uppercase }}</h5>
             <hr>
               <div class="card-text ">
-
                <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500 ">Orders</div>
-                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">1,344</div>
+                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500 ">Orders</div>
+                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">1,344</div>
                </div>
                <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                </div>
                <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                </div>
                <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                </div>
                <div class="row p-2 mb-2">
-                 <div class="col-lg-7 col-md-7 fontSize16 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize16 fontWeight500 text-right">12,345 Rs</div>
+                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
+                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
                </div>
            </div>
             <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
         </div>
     </div>
-
-
   </div>
 </div>

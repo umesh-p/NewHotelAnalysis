@@ -13,29 +13,4 @@ export class MenuItemService extends DataService {
     super((environment.dataURL + 'menu') , http);
   }
 
-  getMenuData(): any{
-
-    if(this.allMenuItems.length == 0){
-      this.getAll().subscribe((result)=> {
-          this.allMenuItems = result['data'];
-          for(let i in this.allMenuItems){
-            this.allMenuItems[i]["isfavourite"] = this.allMenuItems[i]["isfavourite"].toLowerCase() == "true" ? true : false ;
-            this.allMenuItems[i]["isdisabled"] = this.allMenuItems[i]["isdisabled"].toLowerCase() == "true" ? true : false ;
-            this.allMenuItems[i]["availableat"] = this.allMenuItems[i]["availableat"].toString() ;
-          }
-          return this.allMenuItems;
-      });
-    }
-    return this.allMenuItems;
-  }
-
-  getEnabledMenuItems():any{
-    let enableMenuItems = this.allMenuItems.filter(item => item.isdisabled == false)
-    return enableMenuItems;
-  }
-
-
-
-
-
 }

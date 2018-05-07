@@ -13,3 +13,68 @@
 .activeTab {
     border-bottom: 3px solid #FF8800;
 }
+
+.panelHeight{
+  height:calc(100% - 50px);
+}
+
+.orderListHeader{
+  height: 50px;
+  line-height:50px;
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+  background-color: #114861;
+}
+
+.orderNumberSpan{
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  border-radius: 100px;
+  background: gray;
+  color:white;
+}
+
+.activeTab{
+  background-color: rgba(255, 235, 59, 0.1);
+}
+
+.orderSubHeader{
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.orderSubFooter{
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    border-top: 2px solid #114861;
+}
+
+.orderBody{
+    height: calc(100% - 155px);
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.table td , .table th {
+    font-weight: 400;
+}
+
+.listContainer{
+  height: calc(100% - 50px);
+}
+
+.tableIconsDiv{
+  height: 120px;
+  width:100%;
+  background: gray;
+}
+
+.orderContainer{
+  height: calc(100% - 120px);
+  background: red;
+}

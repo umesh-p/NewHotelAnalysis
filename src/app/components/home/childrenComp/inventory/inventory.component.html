@@ -215,7 +215,6 @@
                 <table class="table table-responsive-md table-fixed inventoryTable">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Item Name</th>
                             <th>In Stock Qty</th>
                             <th>Min Qty</th>
@@ -231,8 +230,7 @@
                             [ngClass]="{
                                 'rgba-red-light':item.qtyPresent <= item.minQty
                             }">
-                            <th scope="row">{{i+1}}</th>
-                            <td>{{item.itemname}}</td>
+                            <td>{{item.itemname | uppercase}}</td>
                             <td>{{item.qtyPresent +" "+ item.unit}}</td>
                             <td>{{item.minQty +" "+ item.unit}}</td>
                             <td>{{item.maxQty +" "+ item.unit}}</td>

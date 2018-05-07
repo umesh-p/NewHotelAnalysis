@@ -6,6 +6,7 @@ import { materialObject }  from "../../../../common/interfaces/interfaces";
 import { MenuItemService } from '../../../../services/childServices/menu-item.service';
 
 import { DecimalPipe } from '@angular/common';
+import { CategoryService } from '../../../../services/childServices/category.service';
 
 @Component({
   selector: 'app-menu-management',
@@ -30,7 +31,12 @@ export class MenuManagement implements OnInit {
   allUnits = ['Kg','Gms','Liters'];
   totalPricePerPlate:number = 0;
 
-  constructor(private inventoryService : InventoryService , public toastr: ToastsManager , private menuService:MenuItemService ) { }
+  allCategories:any = [];
+
+  constructor(private inventoryService : InventoryService ,
+              public toastr: ToastsManager ,
+              private menuService:MenuItemService,
+              private categoryService : CategoryService ) { }
 
   ngOnInit() {
     this.inventoryService.getAll().subscribe((result) => {
@@ -38,7 +44,19 @@ export class MenuManagement implements OnInit {
       this.allMaterialsData = result.data;
     });
 
-    this.allMenuItems = this.menuService.getMenuData();
+    this.categoryService.getAll().subscribe((result) => {
+        this.allCategories = result['data'].map((category) => category.name);
+    });
+
+    this.menuService.getAll().subscribe((result) => {
+      this.allMenuItems = result['data'] ;
+      for(let i in this.allMenuItems){
+        this.allMenuItems[i]["isfavourite"] = this.allMenuItems[i]["isfavourite"].toLowerCase() == "true" ? true : false ;
+        this.allMenuItems[i]["isdisabled"] = this.allMenuItems[i]["isdisabled"].toLowerCase() == "true" ? true : false ;
+        this.allMenuItems[i]["availableat"] = this.allMenuItems[i]["availableat"].toString() ;
+      }
+    })
+
 
   }
 
@@ -54,8 +72,7 @@ export class MenuManagement implements OnInit {
             newMenuItem['id'] = result.data;
             this.allMenuItems.push(newMenuItem);
             this.toastr.success('Menu Item Added' ,"Success" , {showCloseButton : true});
-            this.menuItemMaterials = [];
-            formData.reset();
+            this.resetMenuForm(formData);
         })
     }else{
 
@@ -67,12 +84,17 @@ export class MenuManagement implements OnInit {
       this.menuService.put(UpdatedItems).subscribe((result) => {
           this.toastr.success('Menu Item Updated Successfully' ,"Success" , {showCloseButton : true});
           this.allMenuItems[objIndex] = newMenuItem;
-          this.menuItemMaterials = [];
-          formData.reset();
+          this.resetMenuForm(formData);
       })
     }
     this.openMenuItemPanel()
 
+  }
+
+  resetMenuForm(formData){
+    this.menuItemMaterials = [];
+    this.menuDetails = {};
+    formData.reset();
   }
 
   updateMenuItem(item){
@@ -91,7 +113,9 @@ export class MenuManagement implements OnInit {
 
   }
 
-  openMenuItemPanel(){
+  openMenuItemPanel(menuItemForm?:any){
+      if(menuItemForm)
+        menuItemForm.reset();
       this.viewAddNewMenuPanel = !this.viewAddNewMenuPanel;
   }
 
@@ -137,7 +161,6 @@ export class MenuManagement implements OnInit {
       else if(itemDetails.unit == "Gms" && item.unit == "Kg"){
         this.totalPricePerPlate = this.totalPricePerPlate + ((item['qtyused']*1000)*itemDetails["perunitprice"])
       }
-
     }
 
     this.totalPricePerPlate = this.totalPricePerPlate / parseInt(this.menuDetails.platesperday);

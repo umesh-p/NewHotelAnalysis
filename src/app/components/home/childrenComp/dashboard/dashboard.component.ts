@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItemService } from '../../../../services/childServices/menu-item.service';
+import { InventoryService } from '../../../../services/childServices/inventory.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,26 +11,26 @@ import { MenuItemService } from '../../../../services/childServices/menu-item.se
 export class DashboardComponent implements OnInit {
 
 
-  constructor(private menuService : MenuItemService) { }
+  lessQtyItems:any = [];
+  orderedItems:any = [];
+
+  constructor(private menuService : MenuItemService , private router:Router , private inventoryService : InventoryService) { }
 
   ngOnInit() {
-    this.menuService.getMenuData();
-    this.showData();
+    this.inventoryService.getAll().subscribe((result) => {
+      this.lessQtyItems = result['data'].filter(item =>((item.qtyPresent <= item.minQty ) && (item.orderedQty == 0)))
+      this.orderedItems = result['data'].filter(item => item.orderedQty > 0);
+    });
+
   }
 
-  showStockData(){
-
+  goToOrder(){
+    this.router.navigateByUrl("home/stockInventory");
   }
 
-
-
-
-
-
-
-
-
-
+  public doughnutChartLabels:string[] = ['Table Orders', 'Parcels', 'Online Orders'];
+  public doughnutChartData:number[] = [350, 450, 100];
+  public doughnutChartType:string = 'doughnut';
 
   public lineChartData:Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40 , 90, 80, 78, 67 , 55], label: 'Orders'},
