@@ -65,16 +65,89 @@
 }
 
 .listContainer{
-  height: calc(100% - 50px);
+  height: calc(100% - 55px);
 }
 
 .tableIconsDiv{
   height: 120px;
   width:100%;
-  background: gray;
 }
 
 .orderContainer{
   height: calc(100% - 120px);
-  background: red;
+}
+
+.listHeader{
+  height: 45px;
+  line-height: 45px;
+  width:100%;
+  font-size: 14px;
+  color: white;
+  background-color: #062736;
+}
+
+.listStyling{
+    list-style-type: none;
+    padding: 10px 30px;
+    text-transform: capitalize;
+    color:white;
+}
+
+.bottomBorder{
+  border-bottom: 1px solid #80808042;
+}
+
+.addItemBtn{
+    padding: 2px 20px;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.orderdQtyInput{
+  color: white;
+}
+
+.menuItemsWrapper{
+  height: calc(100% - 55px);
+}
+
+.leftScrollSpan , .rightScrollSpan{
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+}
+
+.spanContainers:active{
+  background-color: rgba(63, 81, 181, 0.3);
+}
+
+.tableHolder{
+  height: 65px;
+  width: 65px;
+  display: inline-block;
+  margin:25px 10px;
+}
+.scrollingWrapper{
+  white-space: nowrap;
+  overflow-y: hidden;
+}
+
+.tableNumber{
+  font-size: 22px;
+}
+
+.favouritesContainer{
+  height: calc(100% - 50px);
+}
+
+.favourite{
+  text-transform: capitalize;
+  display: inline-block;
+  width: auto;
+
+}
+
+.qtyHolder{
+  width:50px;
+  display: inline-block;
 }

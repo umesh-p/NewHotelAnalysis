@@ -41,6 +41,9 @@ body{
   background-color:#114861;
 }
 
+.menuColor{
+    background-color: #0a2f3f;
+}
 
 
 /*Font sizes*/
@@ -63,6 +66,9 @@ body{
 .fontSize16{
     font-size: 1rem !important;
 }
+.fontSize22{
+  font-size: 22px; 
+}
 
 .fontWeight400{
   font-weight: 400 !important;
@@ -84,9 +90,12 @@ body{
 }
 
 .hiddenOverflow{
-  overflow:hidden;
+  overflow:hidden !important;
 }
 
+.overflowX{
+  overflow-x: scroll;
+}
 
 /**** reusable Borders ***/
 .rightBorder{
@@ -115,6 +124,7 @@ table td , table th {
 {
 	width: 2px;
 	background-color: #F5F5F5;
+  height: 3px;
 }
 
 .style-4::-webkit-scrollbar-thumb
@@ -156,4 +166,16 @@ table td , table th {
 
 .noBorderRadius{
   border-radius: 0;
+}
+
+
+/** cursor shapes **/
+
+.pointer{
+  cursor: pointer;
+}
+
+/*display classes*/
+.displayNone{
+  display: none;
 }

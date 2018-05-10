@@ -1,4 +1,5 @@
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ScrollbarModule } from 'ngx-scrollbar';
 
 import { BrowserModule} from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { InventoryService } from './services/childServices/inventory.service';
 import { MenuItemService } from './services/childServices/menu-item.service';
 import { ReviewService } from './services/childServices/review.service';
 import { CategoryService } from './services/childServices/category.service';
+import { OrderService } from './services/childServices/order-service.service';
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -66,7 +68,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     ToastModule.forRoot(),
     NgSelectModule,
     ChartsModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    ScrollbarModule
     ],
   providers: [
     { provide : ErrorHandler , useClass:GlobalErrorHandler},
@@ -77,7 +80,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     MenuItemService,
     HttpClient,
     ReviewService,
-    CategoryService
+    CategoryService,
+    OrderService
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

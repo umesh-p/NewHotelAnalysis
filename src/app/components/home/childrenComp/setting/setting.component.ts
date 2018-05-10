@@ -13,7 +13,7 @@ export class SettingComponent implements OnInit {
 
   tableNumber:number;
   allCategories:any;
-
+  newCategory:string;
 
   constructor(private loginService : LoginService , private categoryService : CategoryService , public toastr: ToastsManager) { }
 

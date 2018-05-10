@@ -13,53 +13,89 @@
 
 
         <div class="tableOrders panelHeight " *ngIf="tabActive =='tableorder'">
-                <div class="row noMargin full-height">
-                  <div class="card noBorderRadius col-lg-12 col-md-12 col-xl-12">
+                  <div class="card hiddenOverflow noBorderRadius col-lg-12 col-md-12 col-xl-12">
                     <div class="card-body text-center full-height noPadding" >
                         <div class="row full-height">
 
-                            <div class="col-md-5 col-lg-4 col-xl-3 noPadding noMargin menuList full-height">
-                              <div class="orderListHeader"> {{"menu" | uppercase}} </div>
+                            <div class="col-md-5 col-lg-4 col-xl-3 noPadding noMargin menuList full-height text-left menuColor">
+                              <div class="orderListHeader pl-3"> {{"menu" | uppercase}} </div>
 
-                              <div class="listContainer overflowY style-4">   </div>
+
+                              <div class="menuItemsWrapper overflowY style-4">
+                                <ul class="noPadding noMargin bottomBorder" *ngFor="let categoryName of allCategoriesArray" >
+                                    <div class="listHeader pointer pl-3 fontSize14" (click) = "selectCategory(categoryName)"><b>{{categoryName  | uppercase}}</b></div>
+                                    <li class="listStyling fontSize14 pointer row VAlignChildren bottomBorder mr-0" [class.displayNone] = "categoryName != selectedCategory"  *ngFor="let menu of completeMenu[categoryName]">
+                                      <div class="col-md-6 col-lg-6 col-lg-6">{{menu.name}}</div>
+                                      <div class="col-md-3 col-lg-3 col-lg-3">
+                                        <input type="number" class="orderdQtyInput" name="orderdQty" [(ngModel)]="menu.orderdQty" placeholder="Qty" required />
+                                    </div>
+                                      <div class="col-md-3 col-lg-3 col-lg-3">
+                                        <button type="button" class="btn btn-outline-info waves-effect addItemBtn" (click)="addItemToOrder(menu)">Add </button>
+                                      </div>
+                                    </li>
+                                </ul>
+                              </div>
+
                             </div>
 
                             <div class="col-md-7 col-lg-8 col-xl-9 full-height noPadding">
-                              <div class="tableIconsDiv">
+                              <div class="tableIconsDiv full-height">
+                                  <div class="row full-height ml-0">
+
+                                    <div class="col-md-1 col-lg-1 col-xl-1 VAlignChildren spanContainers pointer">
+                                        <span class="leftScrollSpan VAlignChildren" (click)="scroll(scrollingWrapper,'left')"><i class="fa fa-chevron-left fa-2x float-right" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="col-md-10 col-lg-10 col-xl-10">
+
+                                          <div #scrollingWrapper class="scrollingWrapper full-height">
+                                            <ng-scrollbar #scrollingWrapper [trackX]="true" [trackY]="false" [autoHide]="true">
+                                                <span class="tableHolder z-depth-1-half pointer text-center"
+                                                      *ngFor="let item of allTableOrders;let i = index;"
+                                                      (click)="selectedTable(i)">
+                                                      <div class="pt-1">Table</div>   <div class="tableNumber fontWeight500">{{i+1}}</div></span>
+                                            </ng-scrollbar>
+                                          </div>
+
+                                    </div>
+                                    <div class="col-md-1 col-lg-1 col-xl-1 VAlignChildren spanContainers pointer">
+                                        <span class="rightScrollSpan VAlignChildren" (click)="scroll(scrollingWrapper,'right')"><i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i></span>
+                                    </div>
+
+                                  </div>
 
                               </div>
+
                               <div class="row orderContainer noMargin">
-                                <div class="col-md-5 col-lg-5 col-xl-5">
+                                <div class="col-md-5 col-lg-5 col-xl-5 noPadding">
+                                  <div class="orderListHeader orange darken-3">
+                                        {{ "Favourites" | uppercase }}
+                                  </div>
+                                  <div class="favouritesContainer overflowY style-4 text-left  grey lighten-5">
 
+                                      <div class="favourite m-2 p-1 z-depth-1-half orange lighten-5" *ngFor="let favourite of allFavouriteItems">
+                                          <span class="pl-2 pr-4 fontSize15"><b>{{favourite.name}}</b></span>
+                                          <span class="p-1 qtyHolder fontSize14"><input class="fontSize14" type="number" name="forderdQty" [(ngModel)]="favourite.forderdQty" placeholder="Qty" required /></span>
+                                          <span class="p-2 pointer fontSize14"><i class="fa fa-plus-circle fontSize22" aria-hidden="true" (click)="addItemToOrder(favourite)"></i></span>
+                                      </div>
+
+                                  </div>
                                 </div>
-                                <div class="col-md-7 col-lg-7 col-xl-7">
-
+                                <div class="col-md-7 col-lg-7 col-xl-7 noPadding">
+                                  <div class="orderListHeader warning-color-dark">
+                                          {{"Table No"| uppercase}} : {{activeTable}}
+                                  </div>
                                 </div>
-
                               </div>
-
-
-
                             </div>
-
                         </div>
-
                     </div>
                   </div>
-                </div>
         </div>
         <div class="parcelOrders panelHeight" *ngIf="tabActive =='parcel'">
-                    <div class="row p-4 noMargin full-height">
-                      <div class="card noBorderRadius col-lg-12 col-md-12 col-xl-12">
-                        <div class="card-body text-center noPadding">
-
-
-
-
-
-                        </div>
-                      </div>
+              <div class="card noBorderRadius col-lg-12 col-md-12 col-xl-12">
+                    <div class="card-body text-center noPadding">
                     </div>
+              </div>
         </div>
         <div class="onlineOrders panelHeight full-height " *ngIf="tabActive =='online'">
               <div class="card-body text-center full-height">
@@ -69,13 +105,11 @@
                                     {{"All Online Orders List" | uppercase}}
                               </div>
                               <div class="ordersList">
-
                                   <div class="list-group">
                                     <div class="list-group-item list-group-item-action flex-column text-left mb-2"
                                          [class.activeTab] = "activeOrder == i"
                                          *ngFor="let order of allOnlineOrders;let i = index;"
                                          (click)="showOrderDetails(i)">
-
                                       <div class="d-flex w-100 justify-content-between">
                                         <span class="mb-1 fontSize14"><strong>Order Number : {{order.orderNumber}}</strong></span>
                                         <small><h5><span class="badge pink">3 Minutes ago </span></h5></small>
@@ -90,23 +124,17 @@
                         <div class="col-md-7 col-lg-8 col-xl-8 full-height">
                           <div class="row full-height" >
                             <div class="offset-lg-2 offset-xl-2 offset-md-1 col-md-10 col-lg-8 col-xl-8" style="height:98%;">
-
                               <div class="card border-secondary noBorderRadius ">
                                   <div class="card-body text-secondary noPadding full-height">
                                       <div class="orderListHeader">
                                           {{ "Order Number" | uppercase }} : {{detailOrder.orderNumber}}
                                       </div>
-
                                       <div class="orderSubHeader">
                                           <span class="float-left ml-3"><b>Customer Name : {{detailOrder.orderName}}</b></span>
                                           <span class="float-right mr-3 mt-3"><h5><span class="badge amber darken-2">3 Minutes ago </span></h5></span>
                                       </div>
-
                                       <div class="orderBody overflowY style-4">
-                                        <!--Table-->
                                         <table class="table">
-
-                                            <!--Table head-->
                                             <thead class="blue-grey lighten-4">
                                                 <tr>
                                                     <th>#</th>
@@ -115,9 +143,6 @@
                                                     <th>Item Price</th>
                                                 </tr>
                                             </thead>
-                                          <!--Table head-->
-
-                                            <!--Table body-->
                                             <tbody>
                                                 <tr *ngFor="let item of detailOrder.orderItems; let i = index;">
                                                     <th scope="row">{{i + 1}}</th>
@@ -125,17 +150,12 @@
                                                     <td>{{item.qty}}</td>
                                                     <td>{{item.price * item.qty | number:'2.2'}} Rs</td>
                                                 </tr>
-
                                             </tbody>
-                                            <!--Table body-->
-
                                         </table>
-                                        <!--Table-->
                                       </div>
-
                                       <div class="orderSubFooter">
                                         <span class="float-left ml-3"><b>Total Bill Amount : {{detailOrder.totalBill | number:'2.2'}} Rs</b></span>
-                                        <span class="float-right mr-3"><button type="button" class="btn btn-outline-warning waves-effect btn-sm" (click)="onlineOrderDispatched(detailOrder)" >Order Dispatched</button></span>
+                                        <span class="float-right mr-3"><button type="button" class="btn btn-outline-warning waves-effect btn-sm" (click)="onlineOrderDispatched(detailOrder)"><b>Order Dispatched</b></button></span>
                                       </div>
 
                                   </div>

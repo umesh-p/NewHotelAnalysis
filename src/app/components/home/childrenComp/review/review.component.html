@@ -1,6 +1,7 @@
 
 <div class="row full-height" *ngIf="reviewData">
   <div class="col-md-5 col-lg-5 col-xl-4 mb-2 overflowY style-4">
+
     <section class="padding10">
         <div class="row reviewDiv padding10" *ngFor="let reviewObj of reviewData.user_reviews" [ngClass]="{
                 'negativeBorder' : reviewObj.review.rating <= 2,
@@ -31,7 +32,6 @@
       <div class="col-md-12 col-lg-12 col-xl-9">
         <div class="card">
              <div class="card-body">
-                 <h4 class="card-title">Review</h4>
                  <div class="row">
                    <div class="col text-center rightBorder">
                      <circle-progress
