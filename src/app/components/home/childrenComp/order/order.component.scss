@@ -44,7 +44,6 @@
   height: 50px;
   line-height: 50px;
   font-size: 14px;
-  border-bottom: 1px solid #f1f1f1;
 }
 
 .orderSubFooter{
@@ -58,6 +57,11 @@
     height: calc(100% - 155px);
     width: 100%;
     overflow-y: scroll;
+}
+.orderBodyTable{
+  height: calc(100% - 155px);
+  width: 100%;
+  overflow-y: scroll;
 }
 
 .table td , .table th {
@@ -150,4 +154,34 @@
 .qtyHolder{
   width:50px;
   display: inline-block;
+}
+
+.lightTableHeader{
+  background-color: #11486121;
+}
+
+.removebtn{
+    padding: 8px 12px;
+    margin: -5px;
+}
+
+.qtyHolder{
+  max-width: 250px;
+}
+
+//Table status Colors
+
+.activeTable{
+  background-color: #ffd600  !important;
+  color: black !important;
+}
+
+.busyTable{
+  background-color: #d50000;
+  color: white;
+}
+
+.openTable{
+    background-color: #114861;
+    color: white;
 }

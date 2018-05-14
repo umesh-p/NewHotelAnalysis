@@ -5,7 +5,7 @@
         <div class="card-body noPadding full-height">
 
 
-        <div class="orderPanelTab row rgba-indigo-slight text-center noMargin"  >
+        <div class="orderPanelTab row rgba-indigo-slight text-center noMargin z-depth-1"  >
               <div class="col-md-3 col-lg-2 col-xl-2 pointer p-2 pt-3" [class.activeTab] = "tabActive=='tableorder' " (click)="tabActive='tableorder' ">Table Order</div>
               <div class="col-md-3 col-lg-2 col-xl-2 pointer p-2 pt-3" [class.activeTab] = "tabActive=='parcel' " (click)="tabActive='parcel' ">Parcel Orders</div>
               <div class="col-md-3 col-lg-2 col-xl-2 pointer p-2 pt-3"[class.activeTab] = "tabActive=='online' " (click)="tabActive='online' ">Online Orders</div>
@@ -18,7 +18,7 @@
                         <div class="row full-height">
 
                             <div class="col-md-5 col-lg-4 col-xl-3 noPadding noMargin menuList full-height text-left menuColor">
-                              <div class="orderListHeader pl-3"> {{"menu" | uppercase}} </div>
+                              <div class="orderListHeader pl-3 z-depth-1"> {{"menu" | uppercase}} </div>
 
 
                               <div class="menuItemsWrapper overflowY style-4">
@@ -27,7 +27,7 @@
                                     <li class="listStyling fontSize14 pointer row VAlignChildren bottomBorder mr-0" [class.displayNone] = "categoryName != selectedCategory"  *ngFor="let menu of completeMenu[categoryName]">
                                       <div class="col-md-6 col-lg-6 col-lg-6">{{menu.name}}</div>
                                       <div class="col-md-3 col-lg-3 col-lg-3">
-                                        <input type="number" class="orderdQtyInput" name="orderdQty" [(ngModel)]="menu.orderdQty" placeholder="Qty" required />
+                                        <input type="number" min=1 class="orderdQtyInput" name="orderdQty" [(ngModel)]="menu.orderdQty" placeholder="Qty" required />
                                     </div>
                                       <div class="col-md-3 col-lg-3 col-lg-3">
                                         <button type="button" class="btn btn-outline-info waves-effect addItemBtn" (click)="addItemToOrder(menu)">Add </button>
@@ -49,10 +49,15 @@
 
                                           <div #scrollingWrapper class="scrollingWrapper full-height">
                                             <ng-scrollbar #scrollingWrapper [trackX]="true" [trackY]="false" [autoHide]="true">
-                                                <span class="tableHolder z-depth-1-half pointer text-center"
+                                                <span [ngClass]="{
+                                                      'activeTable': activetableOrder.tableNumber == i,
+                                                      'openTable': item.status == 'open',
+                                                      'busyTable': item.status == 'busy'}"
+                                                      class="tableHolder z-depth-1-half pointer text-centxer"
                                                       *ngFor="let item of allTableOrders;let i = index;"
                                                       (click)="selectedTable(i)">
-                                                      <div class="pt-1">Table</div>   <div class="tableNumber fontWeight500">{{i+1}}</div></span>
+
+                                                      <div class="pt-1">Table</div><div class="tableNumber fontWeight500">{{i+1}}</div></span>
                                             </ng-scrollbar>
                                           </div>
 
@@ -66,24 +71,84 @@
                               </div>
 
                               <div class="row orderContainer noMargin">
-                                <div class="col-md-5 col-lg-5 col-xl-5 noPadding">
-                                  <div class="orderListHeader orange darken-3">
+                                <div class="col-md-5 col-lg-6 col-xl-7 noPadding">
+                                  <div class="orderListHeader headersColor z-depth-1">
                                         {{ "Favourites" | uppercase }}
                                   </div>
                                   <div class="favouritesContainer overflowY style-4 text-left  grey lighten-5">
 
                                       <div class="favourite m-2 p-1 z-depth-1-half orange lighten-5" *ngFor="let favourite of allFavouriteItems">
                                           <span class="pl-2 pr-4 fontSize15"><b>{{favourite.name}}</b></span>
-                                          <span class="p-1 qtyHolder fontSize14"><input class="fontSize14" type="number" name="forderdQty" [(ngModel)]="favourite.forderdQty" placeholder="Qty" required /></span>
-                                          <span class="p-2 pointer fontSize14"><i class="fa fa-plus-circle fontSize22" aria-hidden="true" (click)="addItemToOrder(favourite)"></i></span>
+                                          <span class="p-1 qtyHolder fontSize14"><input min=1 class="fontSize14" type="number" name="forderdQty" [(ngModel)]="favourite.forderdQty" placeholder="Qty" required /></span>
+                                          <span class="p-2 pointer fontSize14 pointer"><i class="fa fa-plus-circle fontSize22" aria-hidden="true" (click)="addItemToOrder(favourite)"></i></span>
                                       </div>
 
                                   </div>
                                 </div>
-                                <div class="col-md-7 col-lg-7 col-xl-7 noPadding">
-                                  <div class="orderListHeader warning-color-dark">
+                                <div class="col-md-7 col-lg-6 col-xl-5 noPadding">
+                                  <div class="orderListHeader headersColor z-depth-1">
                                           {{"Table No"| uppercase}} : {{activeTable}}
                                   </div>
+                                  <div class="orderBodyTable overflowY style-4">
+                                    <table class="table">
+                                        <thead class="lightTableHeader blackTextColor">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Item Name</th>
+                                                <th>Item Qty</th>
+                                                <th>Item Price</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                             <tr *ngFor="let item of activetableOrder.orderedItems; let i = index;">
+                                                <th scope="row">{{i + 1}}</th>
+                                                <td class="textCaptalize">{{item.name}}</td>
+                                                <td style="padding-top:6px;"><input type="number" min=1 class="qtyHolder" name="orderedQty" [(ngModel)]="item.orderedqty" placeholder="Qty" (change)="qtyChanged(i,item)"  required /></td>
+                                                <td>{{item.totalprice | number:'2.2' }} Rs</td>
+                                                <td><button type="button" class="btn btn-danger btn-sm removebtn pointer" (click)="removeOrderedItem(i , item)">Remove</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                  </div>
+
+                                  <div class="orderSubFooter">
+                                    <div class="row">
+
+                                      <div class="col noMargin noPadding">
+                                        <label for="cash">
+                                          <input  type="radio" id="cash" class="option-input radio" value='cash' name="paymentmethod" [(ngModel)]="activetableOrder.paymentmethod" checked/>
+                                            <b>Cash</b>
+                                        </label>
+                                      </div>
+                                      <div class="col noMargin noPadding">
+                                        <label for="paytm">
+                                            <input type="radio" id="paytm" class="option-input radio" value='paytm' name="paymentmethod" [(ngModel)]="activetableOrder.paymentmethod"/>
+                                              <b>Paytm</b>
+                                          </label>
+                                      </div>
+                                      <div class="col noMargin noPadding">
+                                        <label for="card">
+                                            <input type="radio" id="card" class="option-input radio" value='card' name="paymentmethod" [(ngModel)]="activetableOrder.paymentmethod"/>
+                                              <b>Card</b>
+                                          </label>
+                                      </div>
+                                      <div class="col noMargin noPadding">
+                                        <label for="upi">
+                                            <input type="radio" id="upi" class="option-input radio" value='upi' name="paymentmethod" [(ngModel)]="activetableOrder.paymentmethod"/>
+                                              <b>UPI</b>
+                                          </label>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  <div class="orderSubFooter">
+                                    <span class="float-left ml-3 fontSize16"><b>Total Bill : {{ activetableOrder.totalBill | number:'2.2'}} Rs</b></span>
+                                    <span class="float-right mr-3 "><button type="button" class="btn btn-outline-warning waves-effect btn-sm" (click)="submitOrder(activetableOrder)"><b>Order Complete</b></button></span>
+                                  </div>
+
+
+
                                 </div>
                               </div>
                             </div>
@@ -135,7 +200,7 @@
                                       </div>
                                       <div class="orderBody overflowY style-4">
                                         <table class="table">
-                                            <thead class="blue-grey lighten-4">
+                                            <thead class="lightTableHeader blackTextColor">
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Item Name</th>
