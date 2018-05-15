@@ -7,7 +7,7 @@
       <div class="row pl-4 pr-4 pt-2">
         <div class="col-md-12 col-lg-12 col-xl-8">
             <div style="display: block;">
-            <canvas baseChart
+            <canvas baseChart class="linechart"
                         [datasets]="lineChartData"
                         [labels]="lineChartLabels"
                         [chartType]="lineChartType"
@@ -17,38 +17,33 @@
           </div>
         <div class="d-none d-xl-block col-xl-4">
            <div class="card mt-4">
-               <div class="card-body">
-                     <h5 class="card-title"><strong>{{ "Order Statistics" | uppercase }}</strong></h5>
-                   <hr>
-                     <div class="card-text ">
-                      <div class="row p-2">
-                        <div class="col-xl-7 fontSize15 fontWeight500 ">Orders</div>
-                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">1,344</div>
-                      </div>
-                      <div class="row p-2">
-                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-                      </div>
-                      <div class="row p-2">
-                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-                      </div>
-                      <div class="row p-2">
-                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-                      </div>
-                      <div class="row p-2">
-                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-                      </div>
-                      <div class="row p-2 mb-2">
-                        <div class="col-xl-7 fontSize15 fontWeight500">Revenue</div>
-                        <div class="col-xl-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-                      </div>
-                  </div>
-
-                   <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
-               </div>
+             <div class="card-body">
+                 <h5 class="card-title">{{ "Order Statistics" | uppercase }}</h5>
+                 <hr>
+                   <div class="card-text ">
+                    <div class="row p-2">
+                      <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Total Orders</div>
+                      <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.totalOrders}}</div>
+                    </div>
+                    <div class="row p-2">
+                      <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Table Orders</div>
+                      <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.tableOrderCount}}</div>
+                    </div>
+                    <div class="row p-2">
+                      <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Take Aways</div>
+                      <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.parcelOrderCount}}</div>
+                    </div>
+                    <div class="row p-2">
+                      <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Online Order</div>
+                      <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.OnlineOrderCount}}</div>
+                    </div>
+                    <div class="row p-2 mb-2">
+                      <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Total Sale</div>
+                      <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.totalSales | number:'2.2' }} Rs</div>
+                    </div>
+                </div>
+                 <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
+             </div>
            </div>
         </div>
       </div>
@@ -58,8 +53,8 @@
         <div class="col-xl-4 d-none d-xl-block">
                 <div class="card ">
                     <div class="card-body cardHeight style-4">
-                      <div style="display: block">
-                        <canvas baseChart height="245" width="300"
+                      <div style="display:block" class="chartContainer">
+                        <canvas baseChart class="doughnutChart"
                                     [data]="doughnutChartData"
                                     [labels]="doughnutChartLabels"
                                     [chartType]="doughnutChartType"
@@ -108,7 +103,10 @@
             </div>
       </div>
       <hr>
-      <div class="row height350  pl-4 pr-4 pt-2"></div>
+      <div class="row height350  pl-4 pr-4 pt-2">
+
+
+      </div>
   </div>
 </div>
   <div class="col-md-4 col-lg-4 col-xl-3">
@@ -126,34 +124,34 @@
         </div>
     </div>
 
-    <div class="card mt-1 d-xl-none">
-        <div class="card-body">
-            <h5 class="card-title">{{ "Order Statistics" | uppercase }}</h5>
-            <hr>
-              <div class="card-text ">
-               <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500 ">Orders</div>
-                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">1,344</div>
-               </div>
-               <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-               </div>
-               <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-               </div>
-               <div class="row p-2">
-                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-               </div>
-               <div class="row p-2 mb-2">
-                 <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Revenue</div>
-                 <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">12,345 Rs</div>
-               </div>
-           </div>
-            <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
-        </div>
+    <div class="card mt-4 d-xl-none">
+      <div class="card-body">
+          <h5 class="card-title">{{ "Order Statistics" | uppercase }}</h5>
+          <hr>
+            <div class="card-text ">
+             <div class="row p-2">
+               <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Total Orders</div>
+               <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.totalOrders}}</div>
+             </div>
+             <div class="row p-2">
+               <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Table Orders</div>
+               <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.tableOrderCount}}</div>
+             </div>
+             <div class="row p-2">
+               <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Take Aways</div>
+               <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.parcelOrderCount}}</div>
+             </div>
+             <div class="row p-2">
+               <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Online Order</div>
+               <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.OnlineOrderCount}}</div>
+             </div>
+             <div class="row p-2 mb-2">
+               <div class="col-lg-7 col-md-7 fontSize15 fontWeight500">Total Sale</div>
+               <div class="col-lg-5 col-md-5 fontSize15 fontWeight500 text-right">{{dashboardData.totalSales | number:'2.2' }} Rs</div>
+             </div>
+         </div>
+          <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
+      </div>
     </div>
   </div>
 </div>

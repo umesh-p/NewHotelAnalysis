@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItemService } from '../../../../services/childServices/menu-item.service';
 import { InventoryService } from '../../../../services/childServices/inventory.service';
+import { DashboardService } from '../../../../services/childServices/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +12,22 @@ import { InventoryService } from '../../../../services/childServices/inventory.s
 export class DashboardComponent implements OnInit {
 
 
+	dashboardData: any = {};
   lessQtyItems:any = [];
   orderedItems:any = [];
 
-  constructor(private menuService : MenuItemService , private router:Router , private inventoryService : InventoryService) { }
+  public doughnutChartLabels:string[] = [];
+  public doughnutChartData:number[] = [];
+  public doughnutChartType:string = 'doughnut';
+
+  public lineChartData:Array<any> = [{'data': [], 'label': 'Orders last 10 Days'}];
+  public lineChartLabels:Array<any> = [];
+  public lineChartType:string = 'line';
+
+  constructor(private menuService : MenuItemService,
+              private router:Router,
+              private inventoryService : InventoryService,
+              private dashboardService : DashboardService) { }
 
   ngOnInit() {
     this.inventoryService.getAll().subscribe((result) => {
@@ -22,22 +35,21 @@ export class DashboardComponent implements OnInit {
       this.orderedItems = result['data'].filter(item => item.orderedQty > 0);
     });
 
+
+    this.dashboardService.getAll().subscribe((result) => {
+        this.dashboardData = JSON.parse(result['data']);
+        this.doughnutChartLabels = this.dashboardData['allPaymentMethods'];
+        this.doughnutChartData = this.dashboardData['allPaymentCount'];
+        this.lineChartLabels = this.dashboardData['lastTenDays'];
+        this.lineChartData = [{'data': this.dashboardData['orderCount'], 'label': 'Orders last 10 Days'}];
+    })
+
+
   }
 
   goToOrder(){
     this.router.navigateByUrl("home/stockInventory");
   }
-
-  public doughnutChartLabels:string[] = ['Table Orders', 'Parcels', 'Online Orders'];
-  public doughnutChartData:number[] = [350, 450, 100];
-  public doughnutChartType:string = 'doughnut';
-
-  public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40 , 90, 80, 78, 67 , 55], label: 'Orders'},
-    {data: [28, 48, 40, 19, 86, 27, 90, 55, 40 , 90, 80, 78], label: 'Sales'}
-  ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July' ,'August','Septmber','October','November','December'];
-  public lineChartType:string = 'line';
 
 
   public chartClicked(e:any):void {

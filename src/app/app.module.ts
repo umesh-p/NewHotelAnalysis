@@ -40,6 +40,7 @@ import { DailyPreparationsComponent } from './components/home/childrenComp/daily
 
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { DashboardService } from './services/childServices/dashboard.service';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     HttpClient,
     ReviewService,
     CategoryService,
-    OrderService
+    OrderService,
+    DashboardService
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

@@ -1,107 +1,116 @@
 
-<div class="row full-height" *ngIf="reviewData">
-  <div class="col-md-5 col-lg-5 col-xl-4 mb-2 overflowY style-4">
+<div class="row full-height">
+  <div class="col-md-12 col-lg-12 col-xl-12 full-height">
+    <div class="card testimonial-card overflowY full-height style-4 noBorderRadius">
+        <div class="card-body full-height noPadding">
+          <div class="row full-height" *ngIf="reviewData">
+            <div class="col-md-5 col-lg-5 col-xl-4 mb-2 overflowY style-4">
 
-    <section class="padding10">
-        <div class="row reviewDiv padding10" *ngFor="let reviewObj of reviewData.user_reviews" [ngClass]="{
-                'negativeBorder' : reviewObj.review.rating <= 2,
-                'positiveBorder' : reviewObj.review.rating > 2
-            }">
-            <div class="col-lg-2 col-xl-2 mb-2 noPadding">
-                    <img src="{{reviewObj.review.user.profile_image}}" class="img-fluid fixedImage" alt="First sample image">
+              <section class="padding10">
+                  <div class="row reviewDiv padding10" *ngFor="let reviewObj of reviewData.user_reviews" [ngClass]="{
+                          'negativeBorder' : reviewObj.review.rating <= 2,
+                          'positiveBorder' : reviewObj.review.rating > 2
+                      }">
+                      <div class="col-lg-2 col-xl-2 mb-2 noPadding">
+                              <img src="{{reviewObj.review.user.profile_image}}" class="img-fluid fixedImage" alt="First sample image">
+                      </div>
+                      <div class="col-lg-10 col-xl-10 ml-xl-10 mb-10">
+                        <p class="marginBottom5">by
+                            <a class="font-weight-bold fontSize15">{{reviewObj.review.user.name}}</a>,       {{reviewObj.review.review_time_friendly}}</p>
+                          <p class="fontSize14 marginBottom5">{{reviewObj.review.review_text}}</p>
+                          <div class="feed-footer">
+                             <a class="like fontSize13">
+                                 <i class="fa fa-heart" ></i>
+                                 <span>{{reviewObj.review.likes}} likes</span>
+                             </a>
+                         </div>
+                      </div>
+                  </div>
+
+              </section>
             </div>
-            <div class="col-lg-10 col-xl-10 ml-xl-10 mb-10">
-              <p class="marginBottom5">by
-                  <a class="font-weight-bold fontSize15">{{reviewObj.review.user.name}}</a>,       {{reviewObj.review.review_time_friendly}}</p>
-                <p class="fontSize14 marginBottom5">{{reviewObj.review.review_text}}</p>
-                <div class="feed-footer">
-                   <a class="like fontSize13">
-                       <i class="fa fa-heart" ></i>
-                       <span>{{reviewObj.review.likes}} likes</span>
-                   </a>
-               </div>
+
+            <div class="col-md-5 col-lg-7 col-xl-8 mb-2 mt-2">
+
+              <div class="row">
+                <div class="col-md-12 col-lg-12 col-xl-9">
+                  <div class="card">
+                       <div class="card-body">
+                           <div class="row">
+                             <div class="col text-center rightBorder">
+                               <circle-progress
+                                 [percent]="reviewData.reviews_count"
+                                 [radius]="40"
+                                 [outerStrokeWidth]="5"
+                                 [innerStrokeWidth]="3"
+                                 [outerStrokeColor]="'#4882c2'"
+                                 [innerStrokeColor]="'#e7e8ea'"
+                                 [animation]="true"
+                                 [animationDuration]="300"
+                                 [showUnits]="false"
+                                 [showSubtitle]="false"
+                               ></circle-progress>
+                             </div>
+                             <div class="col text-center rightBorder">
+                               <circle-progress
+                                 [percent]="reviewData.reviews_shown"
+                                 [radius]="40"
+                                 [outerStrokeWidth]="5"
+                                 [innerStrokeWidth]="3"
+                                 [outerStrokeColor]="'#78C000'"
+                                 [innerStrokeColor]="'#C7E596'"
+                                 [animation]="true"
+                                 [animationDuration]="300"
+                                 [showUnits]="false"
+                                 [showSubtitle]="false"
+                               ></circle-progress>
+                             </div>
+                             <div class="col text-center rightBorder">
+                               <circle-progress
+                                 [percent]="reviewData.positiveReviews"
+                                 [radius]="40"
+                                 [outerStrokeWidth]="5"
+                                 [innerStrokeWidth]="3"
+                                 [outerStrokeColor]="'#32CD32'"
+                                 [innerStrokeColor]="'#32CD32'"
+                                 [animation]="true"
+                                 [animationDuration]="300"
+                                 [showUnits]="false"
+                                 [showSubtitle]="false"
+                               ></circle-progress>
+                             </div>
+                             <div class="col text-center">
+                                <circle-progress
+                                  [percent]="reviewData.negativeReivews"
+                                  [radius]="40"
+                                  [outerStrokeWidth]="5"
+                                  [innerStrokeWidth]="3"
+                                  [outerStrokeColor]="'#FF6347'"
+                                  [innerStrokeColor]="'#FF6347'"
+                                  [animation]="true"
+                                  [animationDuration]="300"
+                                  [showUnits]="false"
+                                  [showSubtitle]="false"
+                                ></circle-progress>
+                             </div>
+                           </div>
+
+                           <div class="row">
+                                <div class="col fontSize14 text-center">Total Reviews</div>
+                                <div class="col fontSize14 text-center">Shown Reviews</div>
+                                <div class="col fontSize14 text-center">Positive Reviews</div>
+                                <div class="col fontSize14 text-center">Negative Reviews</div>
+                           </div>
+
+                       </div>
+                   </div>
+                </div>
+              </div>
             </div>
+
+          </div>
+
         </div>
-
-    </section>
-  </div>
-
-  <div class="col-md-5 col-lg-7 col-xl-8 mb-2 mt-2">
-
-    <div class="row">
-      <div class="col-md-12 col-lg-12 col-xl-9">
-        <div class="card">
-             <div class="card-body">
-                 <div class="row">
-                   <div class="col text-center rightBorder">
-                     <circle-progress
-                       [percent]="reviewData.reviews_count"
-                       [radius]="40"
-                       [outerStrokeWidth]="5"
-                       [innerStrokeWidth]="3"
-                       [outerStrokeColor]="'#4882c2'"
-                       [innerStrokeColor]="'#e7e8ea'"
-                       [animation]="true"
-                       [animationDuration]="300"
-                       [showUnits]="false"
-                       [showSubtitle]="false"
-                     ></circle-progress>
-                   </div>
-                   <div class="col text-center rightBorder">
-                     <circle-progress
-                       [percent]="reviewData.reviews_shown"
-                       [radius]="40"
-                       [outerStrokeWidth]="5"
-                       [innerStrokeWidth]="3"
-                       [outerStrokeColor]="'#78C000'"
-                       [innerStrokeColor]="'#C7E596'"
-                       [animation]="true"
-                       [animationDuration]="300"
-                       [showUnits]="false"
-                       [showSubtitle]="false"
-                     ></circle-progress>
-                   </div>
-                   <div class="col text-center rightBorder">
-                     <circle-progress
-                       [percent]="reviewData.positiveReviews"
-                       [radius]="40"
-                       [outerStrokeWidth]="5"
-                       [innerStrokeWidth]="3"
-                       [outerStrokeColor]="'#32CD32'"
-                       [innerStrokeColor]="'#32CD32'"
-                       [animation]="true"
-                       [animationDuration]="300"
-                       [showUnits]="false"
-                       [showSubtitle]="false"
-                     ></circle-progress>
-                   </div>
-                   <div class="col text-center">
-                      <circle-progress
-                        [percent]="reviewData.negativeReivews"
-                        [radius]="40"
-                        [outerStrokeWidth]="5"
-                        [innerStrokeWidth]="3"
-                        [outerStrokeColor]="'#FF6347'"
-                        [innerStrokeColor]="'#FF6347'"
-                        [animation]="true"
-                        [animationDuration]="300"
-                        [showUnits]="false"
-                        [showSubtitle]="false"
-                      ></circle-progress>
-                   </div>
-                 </div>
-
-                 <div class="row">
-                      <div class="col fontSize14 text-center">Total Reviews</div>
-                      <div class="col fontSize14 text-center">Shown Reviews</div>
-                      <div class="col fontSize14 text-center">Positive Reviews</div>
-                      <div class="col fontSize14 text-center">Negative Reviews</div>
-                 </div>
-
-             </div>
-         </div>
-      </div>
     </div>
   </div>
-
 </div>

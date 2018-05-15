@@ -105,7 +105,7 @@
                                                 <th scope="row">{{i + 1}}</th>
                                                 <td class="textCaptalize">{{item.name}}</td>
                                                 <td style="padding-top:6px;"><input type="number" min=1 class="qtyHolder" name="orderedQty" [(ngModel)]="item.orderedqty" placeholder="Qty" (change)="qtyChanged(i,item)"  required /></td>
-                                                <td>{{item.totalprice | number:'2.2' }} Rs</td>
+                                                <td>{{item.totalprice }} Rs</td>
                                                 <td><button type="button" class="btn btn-danger btn-sm removebtn pointer" (click)="removeOrderedItem(i , item)">Remove</button></td>
                                             </tr>
                                         </tbody>
