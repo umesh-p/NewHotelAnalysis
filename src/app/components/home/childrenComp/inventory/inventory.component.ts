@@ -19,7 +19,7 @@ export class InventoryComponent implements OnInit {
   updatedItem:any;
   isUpdateItem= false;
 
-  allUnits = ['Kg','Gms','Liters'];
+  allUnits = ['Kg','Liters'];
 
   constructor(private inventoryService : InventoryService , public toastr: ToastsManager) { }
 

@@ -12,6 +12,7 @@ import { DashboardService } from '../../../../services/childServices/dashboard.s
 export class DashboardComponent implements OnInit {
 
 
+	allDiabledItems: any = [];
 	dashboardData: any = {};
   lessQtyItems:any = [];
   orderedItems:any = [];
@@ -45,12 +46,19 @@ export class DashboardComponent implements OnInit {
     })
 
 
+    this.menuService.getAll().subscribe((result) => {
+        this.allDiabledItems = result['data'].filter((item) => (item.isdisabled.toLowerCase() == 'true' ));
+    });
+
   }
 
   goToOrder(){
     this.router.navigateByUrl("home/stockInventory");
   }
 
+  gotToMenu(){
+    this.router.navigateByUrl("home/manageMenu");
+  }
 
   public chartClicked(e:any):void {
     console.log(e);

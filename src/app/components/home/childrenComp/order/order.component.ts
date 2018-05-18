@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MenuItemService } from '../../../../services/childServices/menu-item.service';
 import { OrderService } from '../../../../services/childServices/order-service.service';
 import { ToastsManager } from 'ng2-toastr';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-order',

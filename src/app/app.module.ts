@@ -24,6 +24,10 @@ import { MenuItemService } from './services/childServices/menu-item.service';
 import { ReviewService } from './services/childServices/review.service';
 import { CategoryService } from './services/childServices/category.service';
 import { OrderService } from './services/childServices/order-service.service';
+import { DailyPlatesService } from './services/childServices/daily-plates.service';
+import { AnalysisService } from './services/childServices/analysis.service';
+
+
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -83,7 +87,10 @@ import { DashboardService } from './services/childServices/dashboard.service';
     ReviewService,
     CategoryService,
     OrderService,
-    DashboardService
+    DashboardService,
+    DailyPlatesService,
+    AnalysisService
+
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

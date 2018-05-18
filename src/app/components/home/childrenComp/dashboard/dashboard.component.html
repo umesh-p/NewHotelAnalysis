@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row full-height">
 
-  <div class="col-md-8 col-lg-8 col-xl-9 full-height hiddenOverflow overflowY style-4">
-    <div class="card card-body noBorderRadius noPadding  mt-2 mb-2">
+  <div class="col-md-8 col-lg-8 col-xl-9 fitHeight hiddenOverflow overflowY style-4">
+    <div class="card card-body noBorderRadius noPadding mt-2 mb-2">
       <div class="card-header headersColor lighten-1 white-text">Dashboard</div>
 
       <div class="row pl-4 pr-4 pt-2">
@@ -49,8 +49,10 @@
       </div>
       <hr>
 
-      <div class="row height350  pl-4 pr-4 pt-2">
-        <div class="col-xl-4 d-none d-xl-block">
+
+      <div class="row height360 pl-4 pr-4 pt-2">
+
+        <div class="col-xl-4 col-lg-6 col-md-6 d-xl-none">
                 <div class="card ">
                     <div class="card-body cardHeight style-4">
                       <div style="display:block" class="chartContainer">
@@ -64,56 +66,117 @@
                     </div>
                 </div>
         </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 ">
-                    <div class="card ">
-                        <div class="card-body cardHeight style-4">
-                          <h5 class="card-title">{{ "Less Stock Items" | uppercase }}</h5>
-                          <hr>
-                          <ul class="list-group">
-                              <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of lessQtyItems">
-                                  {{item.itemname | uppercase}}
-                                  <span class="badge badge-pill red">{{item.qtyPresent + " "+ item.unit}} in stock</span>
-                              </li>
-
-                          </ul>
-                          <hr>
-                          <div class="float-right">
-                            <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
-                          </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 ">
+                <div class="card ">
+                    <div class="card-body cardHeight style-4">
+                      <h5 class="card-title">{{ "Less Stock Items" | uppercase }}</h5>
+                      <hr>
+                      <ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of lessQtyItems">
+                              {{item.itemname | uppercase}}
+                              <span class="badge badge-pill red">{{item.qtyPresent + " "+ item.unit}} in stock</span>
+                          </li>
+                      </ul>
+                      <hr>
+                      <div class="float-right">
+                        <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
+                      </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 d-none d-xl-block">
+                <div class="card cardHeight style-4">
+                    <div class="card-body">
+                        <h5 class="card-title ">{{ "Ordered Items" | uppercase }}</h5>
+                        <hr>
+                        <ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of orderedItems">
+                              {{item.itemname | uppercase}}
+                              <span class="badge badge-pill green">{{item.orderedQty+ " "+ item.unit}} ordered</span>
+                          </li>
+                        </ul>
+                        <hr>
+                        <div class="float-right">
+                          <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
                         </div>
                     </div>
             </div>
-            <div class="col-xl-4 col-lg-6 col-md-6 ">
-                    <div class="card cardHeight style-4">
-                        <div class="card-body">
-                            <h5 class="card-title ">{{ "Ordered Items" | uppercase }}</h5>
-                            <hr>
-                            <ul class="list-group">
-                              <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of orderedItems">
-                                  {{item.itemname | uppercase}}
-                                  <span class="badge badge-pill green">{{item.orderedQty+ " "+ item.unit}} ordered</span>
-                              </li>
-                            </ul>
-                            <hr>
-                            <div class="float-right">
-                              <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
-                            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 d-none d-xl-block">
+                <div class="card cardHeight style-4">
+                    <div class="card-body">
+                        <h5 class="card-title ">{{ "Disabled Items" | uppercase }}</h5>
+                        <p class="redTextColor">Enable if availble today !!!</p>
+                        <hr>
+                        <ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of allDiabledItems">
+                              {{item.name | uppercase}}
+                              <span class="badge badge-pill red">{{item.category}}</span>
+                          </li>
+                        </ul>
+                        <hr>
+                        <div class="float-right">
+                          <a class="btn btn-primary btn-sm my-0 noMargin" (click)="gotToMenu()">check It out</a>
                         </div>
-                </div>
+                    </div>
             </div>
+        </div>
       </div>
-      <hr>
-      <div class="row height350  pl-4 pr-4 pt-2">
+      <br class="d-none d-xl-block">
+      <br class="d-none d-xl-block">
+      <hr class="d-xl-none">
+      <div class="row height360 pl-4 pr-4 pt-2 d-xl-none">
+        <div class="col-xl-4 col-lg-6 col-md-6 ">
+                <div class="card cardHeight style-4">
+                    <div class="card-body">
+                        <h5 class="card-title ">{{ "Ordered Items" | uppercase }}</h5>
+                        <hr>
+                        <ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of orderedItems">
+                              {{item.itemname | uppercase}}
+                              <span class="badge badge-pill green">{{item.orderedQty+ " "+ item.unit}} ordered</span>
+                          </li>
+                        </ul>
+                        <hr>
+                        <div class="float-right">
+                          <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 ">
+                <div class="card cardHeight style-4">
+                    <div class="card-body">
+                        <h5 class="card-title ">{{ "Disabled Items" | uppercase }}</h5>
+                        <hr>
+                        <p class="redTextColor">Enable if availble today !!!</p>
 
-
+                        <ul class="list-group">
+                          <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of allDiabledItems">
+                              {{item.name | uppercase}}
+                              <span class="badge badge-pill red">{{item.category}}</span>
+                          </li>
+                        </ul>
+                        <hr>
+                        <div class="float-right">
+                          <a class="btn btn-primary btn-sm my-0 noMargin" (click)="gotToMenu()">check It out</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
       </div>
   </div>
 </div>
+
+
+
+
+
   <div class="col-md-4 col-lg-4 col-xl-3">
-    <div class="card mt-2 mb-2">
+    <div class="card mt-2 mb-4">
         <div class="card-header headersColor lighten-1 white-text">Hindu Panchang</div>
         <div class="card-body">
-            <h5 class="card-title">{{ "Check Out Today's Panchang" | uppercase }}</h5>
+            <h5 class="card-title">{{ "Today's Panchang" | uppercase }}</h5>
             <p class="card-text text-center">
               <iframe src="http://www.igoogleportal.com/shindig/gadgets/ifr?url=http://hosting.gmodules.com/ig/gadgets/file/109787730588197067267/hindi_panchang.xml&lang=en&country=INDIA"
                     height="270"
@@ -123,7 +186,22 @@
             </iframe></p>
         </div>
     </div>
-
+    <div class="mt-2 d-none d-xl-block">
+            <div class="card ">
+                <div class="card-body cardHeight style-4">
+                  <h5 class="card-title ">{{ "payment methods" | uppercase }}</h5>
+                  <hr>
+                  <div style="display:block" class="chartContainer">
+                    <canvas baseChart class="doughnutChart"
+                                [data]="doughnutChartData"
+                                [labels]="doughnutChartLabels"
+                                [chartType]="doughnutChartType"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+            </div>
+    </div>
     <div class="card mt-4 d-xl-none">
       <div class="card-body">
           <h5 class="card-title">{{ "Order Statistics" | uppercase }}</h5>
@@ -153,5 +231,6 @@
           <p class="card-text"><small class="text-muted">All Orders Data Till Now</small></p>
       </div>
     </div>
+
   </div>
 </div>

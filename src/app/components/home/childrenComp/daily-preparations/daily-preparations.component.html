@@ -1,8 +1,105 @@
 <div class="row full-height">
   <div class="col-md-12 col-lg-12 col-xl-12 full-height">
     <div class="card testimonial-card overflowY full-height style-4 noBorderRadius">
-        <div class="card-body full-height">
+        <div class="card-body full-height noPadding">
+          <div class="row full-height">
+              <div class="col-md-4 col-lg-4 col-xl-4 full-height pr-0">
 
+                  <div class="preparationHeader rgba-indigo-slight z-depth-1-half pl-2">Enter Qty to Prepare Per Item TODAY !</div>
+                  <div class="preparationSubHeader headersColor noMargin row">
+                      <div class="col-md-5 col-lg-5 col-xl-5">Item Name</div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">Plates</div>
+                      <div class="col-md-4 col-lg-4 col-xl-4">Check Qty</div>
+                  </div>
+                  <div class="itemsWrapper overflowY style-4">
+                    <div class="noMargin row bottomBorder VAlignChildren menuItemHolder" *ngFor="let menu of allMenuData; let i = index">
+                        <div class="col-md-5 col-lg-5 col-xl-5 textCaptalize">{{menu.name}}</div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                          <input type="number" min=1 class="orderdQtyInput" name="noOfPlatesToPrepare" [(ngModel)]="menu.noOfPlatesToPrepare" placeholder="Plate Count" required />
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                          <button type="button" class="btn btn-outline-info waves-effect addItemBtn" (click)="prepareNoOfPlatesOfItem(menu, i)">Check</button>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="col-md-5 col-lg-5 col-xl-5 full-height pl-0 pr-0">
+
+                <div class="itemRequirementContainer bottomBorder">
+                  <div class="preparationHeader rgba-indigo-slight pl-3 z-depth-1-half">Stock Requirement For item!</div>
+
+                  <div class="preparationSubHeader bottomBorder noMargin row">
+                      <div class="col-md-6 col-lg-6 col-xl-6 textCaptalize">Item Name :  {{selectedItem.name}}</div>
+                      <div class="col-md-6 col-lg-6 col-xl-6">No. Of Plates :  {{selectedItem.noOfPlatesToPrepare}}</div>
+                  </div>
+
+                  <div class="reqStockContainer bottomBorder ">
+                      <div class="reqStockQty overflowY style-4">
+                        <table class="table ">
+                            <thead>
+                                <tr class="headersColor whiteTextColor">
+                                    <th>Item Name</th>
+                                    <th>Qty Required</th>
+                                    <th>Less In Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of selectedItem.materialUsed; let i = index;" [class.rgba-red-light]="item.isLessInStock">
+                                    <td class="textCaptalize">{{item.materialname}}</td>
+                                    <td>{{item.qtyRequied | number:'1.2'}} {{item.unit}}</td>
+                                    <td *ngIf="item.isLessInStock">Not Enough Stock</td>
+                                    <td *ngIf="!item.isLessInStock">Enough In Stock</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </div>
+                  </div>
+
+                  <div class="preparationFooter bottomBorder noMargin row">
+                    <div class="col-md-5 col-lg-5 col-xl-4 offset-md-7 offset-lg-7 offset-xl-8">
+                      <button type="button" class="btn btn-outline-info btn-sm waves-effect" (click)="makeItem(selectedItem)">Lets Prepare</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="stockDetails z-depth-1-half">
+                    <div class="stocksTable full-height overflowY style-4">
+                      <table class="table">
+                          <thead class="headersColor">
+                              <tr class="text-white">
+                                  <th>Item Name</th>
+                                  <th>Min Qty</th>
+                                  <th>Present Qty</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let stock of allStockItems; let i = index;" [class.rgba-red-light] = "stock.minQty > stock.qtyPresent">
+                                  <td class="textCaptalize">{{stock.itemname}}</td>
+                                  <td>{{stock.minQty | number:'1.2'}} {{stock.unit}}</td>
+                                  <td>{{stock.qtyPresent | number:'1.2'}} {{stock.unit}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                </div>
+              </div>
+
+            <div class="col-md-3 col-lg-3 col-xl-3 full-height pl-0 pr-0">
+              <div class="card testimonial-card noBorderRadius full-height">
+                  <div class="card-body full-height noPadding">
+                    <div class="preparationHeader light-blue pl-3 z-depth-1-half whiteTextColor">Todays Prepared Items</div>
+                    <div class="todaysItemsList overflowY style-4">
+                        <div class="preparedItem row z-depth-1-half m-3 mr-4" *ngFor="let item of allTodaysPreparations">
+                              <div class="col-lg-6 col-xl-6 col-md-6 textCaptalize">{{item.name}} </div>
+                              <div class="col-lg-6 col-xl-6 col-md-6 text-right">{{item.noofplates}} Plates </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+          </div>
         </div>
     </div>
   </div>

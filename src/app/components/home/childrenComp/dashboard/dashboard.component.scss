@@ -1,19 +1,25 @@
-.height350{
-  height:350px;
+.fitHeight{
+    height: fit-content;
+}
+
+.height360{
+  height:360px;
 }
 .list-group-item{
   border: none;
 }
 
 .cardHeight{
-  height: 340px;
+  height: 360px;
   overflow-y: scroll;
 }
 
+
 .doughnutChart{
-  height: 300px !important;
-  width: 300px !important;
-  margin:0 auto;
+    height: 265px ;
+    width: 265px ;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 // Small devices (landscape phones, less than 768px)
@@ -34,10 +40,22 @@
   .linechart{
     height: 340px !important;
   }
+  .cardHeight{
+    height: 340px;
+  }
+
 }
 
 @media (min-width: 1199.98px) {
   .linechart{
     height: 380px !important;
   }
+
+  .doughnutChart{
+    height: 270px !important;
+    width: 270px !important;
+    margin:0 auto;
+  }
+
+
 }

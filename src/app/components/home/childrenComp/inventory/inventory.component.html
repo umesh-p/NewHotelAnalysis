@@ -231,7 +231,7 @@
                                 'rgba-red-light':item.qtyPresent <= item.minQty
                             }">
                             <td>{{item.itemname | uppercase}}</td>
-                            <td>{{item.qtyPresent +" "+ item.unit}}</td>
+                            <td>{{item.qtyPresent | number:'1.2' }} {{item.unit}}</td>
                             <td>{{item.minQty +" "+ item.unit}}</td>
                             <td>{{item.maxQty +" "+ item.unit}}</td>
                             <td>{{item.orderedQty +" "+ item.unit }}</td>
@@ -257,8 +257,8 @@
         <div class="card alertCards" *ngFor="let item of lessQtyItems">
             <div class="card-body fontSize13">
               <div>
-                <span class="card-title fontSize15"><b>{{item.itemname}}</b></span>
-                <span class="card-text fontSize13 float-right dangerText ">Only {{item.qtyPresent + " " + item.unit }} left .... </span>
+                <span class="card-title fontSize15 textCaptalize"><b>{{item.itemname}}</b></span>
+                <span class="card-text fontSize13 float-right dangerText ">Only {{item.qtyPresent | number:'1.2' }} {{ item.unit }} left .... </span>
               </div>
               <div style="margin-top:5px">
                 <span class="card-title fontSize14">
@@ -283,7 +283,7 @@
         <div class="card orderCards" *ngFor="let item of orderedItems">
             <div class="card-body fontSize13">
               <div>
-                <span class="card-title fontSize15"><b>{{item.itemname}}</b></span>
+                <span class="card-title fontSize15 textCaptalize"><b>{{item.itemname}}</b></span>
                 <span class="card-text fontSize14 float-right dangerText ">Orderd {{item.orderedQty}} Units</span>
               </div>
 

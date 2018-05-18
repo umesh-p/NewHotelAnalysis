@@ -1,0 +1,73 @@
+.preparationHeader{
+  height: 50px;
+  color: black;
+  line-height: 50px;
+}
+
+.preparationSubHeader , .preparationFooter{
+  height: 50px;
+  color: white;
+  line-height: 50px;
+}
+
+.itemsWrapper{
+  height: calc(100% - 100px);
+  background-color: #0a2f3f;
+  color: white;
+  font-size: 14px !important;
+}
+
+.menuItemHolder{
+  padding: 10px 8px;
+}
+
+.bottomBorder{
+  border-bottom: 1px solid #80808042;
+}
+
+.addItemBtn{
+  padding: 2px 20px;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.orderdQtyInput{
+  color: white;
+}
+
+.itemRequirementContainer{
+  height: 400px;
+}
+
+.itemRequirementContainer > .preparationSubHeader{
+  color: black;
+}
+
+.reqStockContainer{
+  height: 250px;
+}
+
+.reqStockQty{
+  height: 250px;
+}
+
+.stockDetails{
+  height: calc(100% - 400px);
+}
+
+.todaysItemsList{
+  height: calc(100% - 55px);
+}
+
+.preparedItem{
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: -webkit-linear-gradient(50deg,#45cafc,#303f9f)!important;
+  background: -o-linear-gradient(50deg,#45cafc,#303f9f)!important;
+  background: linear-gradient(40deg,#45cafc,#303f9f)!important;
+}
