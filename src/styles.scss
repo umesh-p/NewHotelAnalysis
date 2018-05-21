@@ -88,6 +88,11 @@ body{
   font-size: 22px;
 }
 
+.fontSize24{
+  font-size: 24px;
+}
+
+
 .fontWeight400{
   font-weight: 400 !important;
 }
@@ -120,6 +125,13 @@ body{
     border-right: 1px solid #e4e4e4;
 }
 
+.noBorder{
+  border:none;
+}
+
+.bottomBorder{
+  border-bottom: 1px solid #80808042 !important;
+}
 
 
 /*** table css ****/
@@ -169,6 +181,9 @@ table td , table th {
   margin:0px !important;
 }
 
+.autoMargin{
+    margin: 0 auto;
+}
 
 //padding classes
 
@@ -196,6 +211,12 @@ table td , table th {
 /*display classes*/
 .displayNone{
   display: none;
+}
+
+/* no box shadow */
+
+.noBoxShadow{
+      box-shadow: none !important;
 }
 
 

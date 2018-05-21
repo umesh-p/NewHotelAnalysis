@@ -6,6 +6,9 @@
 .mainContainer{
   height: calc(100%);
   padding-top:46px;
+  max-width: 1800px;
+  margin:0 auto;
+  background: #fdfdfd;
 }
 
 .overlay{
@@ -20,4 +23,14 @@
     overflow-x: hidden;
     -webkit-transition: 0.5s;
     transition: 0.5s;
+}
+
+.signOutSpan{
+    position: absolute;
+    right: 30px;
+    font-size: 14px;
+}
+
+.signOutSpan:hover{
+  font-weight: 500;
 }

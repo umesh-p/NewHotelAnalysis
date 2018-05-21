@@ -1,23 +1,304 @@
 <div class="row full-height">
   <div class="col-md-12 col-lg-12 col-xl-12 full-height">
-    <div class="card testimonial-card overflowY full-height style-4 noBorderRadius">
-        <div class="card-body full-height">
+    <div class="card testimonial-card full-height noBorderRadius">
+        <div class="card-body full-height noPadding">
+          <div class="card-header headersColor lighten-1 white-text">Dashboard</div>
 
 
-        
+          <div class="analysisContainer overflowY style-4">
+              <div class="height200 row noMargin">
+                <div class="col-xl-2 col-lg-4 col-md-4">
+                    <div class="card mt-4 noBorderRadius">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ "Total Orders" | uppercase }}</h5>
+                          <hr>
+                            <div class="card-text ">
+                             <div class=" row p-2">
+                                <div class=" autoMargin fontSize24 fontWeight500" style="color:#FF8800">{{analysisData.totalOrders}}</div>
+                             </div>
+                         </div>
+                          <p class="card-text text-center"><small class="autoMargin " style="color:#FF8800">All Orders Data Till Now</small></p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Total Expenditure" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                              <div class=" autoMargin fontSize24 fontWeight500" style="color:#CC0000">{{analysisData.totalcost | number:'1.2'}} Rs</div>
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin " style="color:#CC0000">Total Expenditure Till Now</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Total Sales" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                             <div class="autoMargin fontSize24 fontWeight500" style="color:#007E33">{{analysisData.totalSales | number:'1.2' }} Rs</div>
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin " style="color:#007E33">Total Sales Till Now</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4 d-none d-xl-block">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Total Profit" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                              <div class=" autoMargin fontSize24 fontWeight500" style="color:#1C2331">{{analysisData.totalSales - analysisData.totalcost | number:'1.2' }} Rs</div>
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin ">Total Profit Till Now</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4 d-none d-xl-block ">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Total Business Days" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                             <div class=" autoMargin fontSize24 fontWeight500" style="color:#9933CC">{{analysisData.totalBusinessDays}}</div>
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin " style="color:#9933CC">Total Days Till Now</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4 d-none d-xl-block">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Avg. Daily Orders" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                             <div class=" autoMargin fontSize24 fontWeight500" style="color:#0d47a1">{{analysisData.avgOrdersPerDay | number:'1.2'}}</div>
+
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin " style="color:#0d47a1">Average orders per Day</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="height200 row noMargin d-xl-none">
+                <div class="col-xl-2 col-lg-4 col-md-4 ">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Total Profit" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                              <div class=" autoMargin fontSize24 fontWeight500" style="color:#1C2331">{{analysisData.totalSales - analysisData.totalcost | number:'1.2'}} Rs</div>
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin " style="color:#1C2331">Total Profit Till Now</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4 ">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Total Business Days" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                             <div class=" autoMargin fontSize24 fontWeight500" style="color:#9933CC">{{analysisData.totalBusinessDays}}</div>
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin " style="color:#9933CC">Total Days Till Now</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4">
+                  <div class="card mt-4 noBorderRadius">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Avg. Daily Orders" | uppercase }}</h5>
+                        <hr>
+                          <div class="card-text ">
+                           <div class=" row p-2">
+                             <div class=" autoMargin fontSize24 fontWeight500" style="color:#0d47a1">{{analysisData.avgOrdersPerDay | number:'1.2'}}</div>
+
+                           </div>
+                       </div>
+                        <p class="card-text text-center"><small class="autoMargin " style="color:#0d47a1">Average orders per Day</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <br><hr>
+              <div class="row noMargin">
+                <div class="height400 full-height col-md-7 col-lg-7 col-xl-5 ">
+                  <div class="card noBorderRadius full-height noBoxShadow borderRight"  >
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Hourly Orders Count" | uppercase }}</h5>
+                        <hr>
+                        <div style="display: block">
+                             <canvas baseChart class="hourLineChart"
+                                     [datasets]="barChartData"
+                                     [labels]="barChartLabels"
+                                     [options]="barChartOptions"
+                                     [legend]="barChartLegend"
+                                     [chartType]="barChartType"
+                                     (chartHover)="chartHovered($event)"
+                                     (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="height400 col-md-5 col-lg-5 col-xl-7 d-none d-xl-block">
+                  <div class="card full-height noBorderRadius noBoxShadow">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Favourite Food Items and Categories" | uppercase }}</h5>
+                        <hr>
+                        <div class="row full-height style-4 overflowY">
+                            <div class="col-md-6 col-lg-6 col-xl-6 pt-2">
+                              <h5 class="card-title pl-2">{{ "Trending Food Items" | uppercase }}</h5>
+                              <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer green lighten-5 mt-1" *ngFor="let item of analysisData.mostSoldItems; let i = index;">
+                                    {{i+1}}. &nbsp;{{analysisData.mostSoldItems[i] | uppercase}}
+                                    <span class="badge badge-primary badge-pill green">{{analysisData.mostSoldItemsCount[i]}} plates</span>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6 pt-2">
+                              <h5 class="card-title pl-2">{{ "Categories Sales" | uppercase }}</h5>
+                              <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer red lighten-5 mt-1" *ngFor="let item of analysisData.categoryArray; let i = index;">
+                                    {{i+1}}. &nbsp;{{analysisData.categoryArray[i] | uppercase}}
+                                    <span class="badge badge-primary badge-pill orange ">{{analysisData.soldCount[i]}} plates</span>
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="height400 col-md-5 col-lg-5 col-xl-7 d-xl-none">
+                  <div class="card full-height noBorderRadius noBoxShadow">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ "Average Statistics" | uppercase }}</h5>
+                        <hr>
+                        <div class="row full-height style-4 overflowY">
+                              <ul class="list-group col">
+                                <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer mt-1">
+                                    Average Orders / Day
+                                    <span class="fontSize15">{{analysisData.avgOrdersPerDay | number:'1.2'}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer mt-1">
+                                    Average Sales / Day
+                                    <span class="fontSize15">{{analysisData.avgSalesPerDay | number:'1.2'}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer mt-1">
+                                    Average Time / Order
+                                    <span class="fontSize15">{{analysisData.avgTimePerOrder}} Minutes</span>
+                                </li>
+                              </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row noMargin d-xl-none">
+                  <div class="height400 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card full-height noBorderRadius noBoxShadow">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ "Favourite Food Items and Categories" | uppercase }}</h5>
+                          <hr>
+                          <div class="row full-height style-4 overflowY">
+                              <div class="col-md-4 col-lg-4 pt-2">
+                                <h5 class="card-title pl-2 bottomBorder pb-2">{{ "Trending Food Items" | uppercase }}</h5>
+                                <ul class="list-group">
+                                  <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer green lighten-5 mt-1" *ngFor="let item of analysisData.mostSoldItems; let i = index;">
+                                      {{i+1}}. &nbsp;{{analysisData.mostSoldItems[i] | uppercase}}
+                                      <span class="badge badge-primary badge-pill green">{{analysisData.mostSoldItemsCount[i]}}</span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div class="col-md-4 col-lg-4 pt-2">
+                                <h5 class="card-title pl-2 bottomBorder pb-2">{{ "Less Sold Items" | uppercase }}</h5>
+                                <ul class="list-group">
+                                  <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer red lighten-5 mt-1" *ngFor="let item of analysisData.categoryArray; let i = index;">
+                                      {{i+1}}. &nbsp;{{analysisData.leastSoldItems[i] | uppercase}}
+                                      <span class="badge badge-primary badge-pill red ">{{analysisData.leastSoldItemsCount[i]}} </span>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div class="col-md-4 col-lg-4 pt-2">
+                                <h5 class="card-title pl-2 bottomBorder pb-2">{{ "Categories Sales" | uppercase }}</h5>
+                                <ul class="list-group">
+                                  <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer red lighten-5 mt-1" *ngFor="let item of analysisData.categoryArray; let i = index;">
+                                      {{i+1}}. &nbsp;{{analysisData.categoryArray[i] | uppercase}}
+                                      <span class="badge badge-primary badge-pill orange ">{{analysisData.soldCount[i]}} plates</span>
+                                  </li>
+                                </ul>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="d-none d-xl-block">
+                <div class="row noMargin height350">
+
+                    <div class="col-md-4 col-lg-4 col-xl-4 rightBorder">
+                      <div class="card full-height noBorderRadius noBoxShadow ">
+                        <div class="card-body">
+                          <h5 class="card-title bottomBorder pb-2">{{ "Less Sold Items" | uppercase }}</h5>
+                          <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center noBorder bottomBorder pointer red lighten-5 mt-1" *ngFor="let item of analysisData.leastSoldItems; let i = index;">
+                              {{i+1}}. &nbsp;{{analysisData.leastSoldItems[i] | uppercase}}
+                              <span class="badge badge-primary badge-pill red ">{{analysisData.leastSoldItemsCount[i]}} </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8 col-lg-8 col-xl-8">
+                      <div class="card full-height noBorderRadius noBoxShadow">
+                        <div class="card-body">
+                            <h5 class="card-title bottomBorder pb-2">{{ "Average Statistics" | uppercase }}</h5>
+                            <div class="row full-height style-4 overflowY noMargin">
+                                  <ul class="list-group col">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center noBorder pointer mt-2 fontWeight500">
+                                        Average Orders / Day
+                                        <span class="fontSize16 fontWeight500">{{analysisData.avgOrdersPerDay | number:'1.2'}} Orders a Day</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center noBorder pointer mt-2 fontWeight500">
+                                        Average Sales / Day
+                                        <span class="fontSize16 fontWeight500">{{analysisData.avgSalesPerDay | number:'1.2'}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center noBorder pointer mt-2 fontWeight500">
+                                        Average Time / Order
+                                        <span class="fontSize16 fontWeight500">{{analysisData.avgTimePerOrder}} Minutes</span>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
+            </div>
+            <br>
+          </div>
         </div>
     </div>
   </div>

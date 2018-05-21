@@ -1,27 +1,19 @@
 <div class="full-height container-fluid">
-
   <div class="row full-height">
-
     <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
-                <!-- SideNav slide-out button -->
                 <div class="float-left">
                     <a data-activates="slide-out" class="button-collapse" (click) = "showSideNav = !showSideNav"><i class="fa fa-bars"></i></a>
                 </div>
-
+                <span class="float-right signOutSpan" (click) = "onSignOut()" >
+                    Sign Out
+                </span>
     </nav>
 
     <app-sidenav [sideNavHideShow] = "showSideNav" (closeSideNav) = "showSideNav = !showSideNav"></app-sidenav>
-
     <div class="mainContainer style-4 col-md-12 full-height">
       <router-outlet></router-outlet>
     </div>
-
   </div>
-
-
 </div>
-
 <div class="overlay" *ngIf="showSideNav">
-
-
 </div>

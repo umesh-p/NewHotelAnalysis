@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
   constructor(private menuService:MenuItemService){}
 
   ngOnInit(){
+
+  }
+
+  onSignOut(){
     
   }
 
