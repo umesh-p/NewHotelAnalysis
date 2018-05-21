@@ -12,22 +12,23 @@ import { ReviewComponent } from '../components/home/childrenComp/review/review.c
 import { SettingComponent } from '../components/home/childrenComp/setting/setting.component';
 import { MenuManagement } from '../components/home/childrenComp/menu-management/menu-management.component';
 import { DailyPreparationsComponent } from '../components/home/childrenComp/daily-preparations/daily-preparations.component';
+import { Authguard } from '../services/childServices/authguard.service';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home',
-    component: HomeComponent ,
+    component: HomeComponent,
     children :[
-      { path: 'orderpanel', component: OrderComponent },
-      { path: 'stockInventory', component: InventoryComponent },
-      { path: 'manageMenu', component : MenuManagement},
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'analysis', component: AnalyticsComponent },
-      { path: 'reviews', component: ReviewComponent },
-      { path: 'dailyprep', component : DailyPreparationsComponent},
-      { path: 'settings', component: SettingComponent },
+      { path: 'orderpanel', component: OrderComponent,canActivate:[Authguard] },
+      { path: 'stockInventory', component: InventoryComponent,canActivate:[Authguard] },
+      { path: 'manageMenu', component : MenuManagement,canActivate:[Authguard]},
+      { path: 'dashboard', component: DashboardComponent,canActivate:[Authguard] },
+      { path: 'analysis', component: AnalyticsComponent,canActivate:[Authguard] },
+      { path: 'reviews', component: ReviewComponent,canActivate:[Authguard] },
+      { path: 'dailyprep', component : DailyPreparationsComponent,canActivate:[Authguard]},
+      { path: 'settings', component: SettingComponent,canActivate:[Authguard] },
     ]},
   { path: 'notFound', component: NotFoundComponent },
   { path: '**' , component: LoginComponent}

@@ -26,6 +26,7 @@ import { CategoryService } from './services/childServices/category.service';
 import { OrderService } from './services/childServices/order-service.service';
 import { DailyPlatesService } from './services/childServices/daily-plates.service';
 import { AnalysisService } from './services/childServices/analysis.service';
+import { Authguard } from './services/childServices/authguard.service';
 
 
 
@@ -89,7 +90,8 @@ import { DashboardService } from './services/childServices/dashboard.service';
     OrderService,
     DashboardService,
     DailyPlatesService,
-    AnalysisService
+    AnalysisService,
+    Authguard
 
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
