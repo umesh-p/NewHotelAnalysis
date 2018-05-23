@@ -77,7 +77,7 @@
                                         <label for="form8" class="">Admin Password</label>
                                     </div>
 
-                                    <input type='submit' class="btn btn-unique waves-light float-right" mdbRippleRadius />
+                                    <input type='submit' class="btn btn-unique waves-light float-right" [disabled]="!registerFromObj.valid" mdbRippleRadius />
                                 </form>
                             </div>
                             <!--/.Card content-->
