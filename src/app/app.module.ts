@@ -27,12 +27,12 @@ import { OrderService } from './services/childServices/order-service.service';
 import { DailyPlatesService } from './services/childServices/daily-plates.service';
 import { AnalysisService } from './services/childServices/analysis.service';
 import { Authguard } from './services/childServices/authguard.service';
-
-
+import { RegisterService } from './services/childServices/register.service';
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
 
 import { OrderComponent } from './components/home/childrenComp/order/order.component';
 import { DashboardComponent } from './components/home/childrenComp/dashboard/dashboard.component';
@@ -62,7 +62,8 @@ import { DashboardService } from './services/childServices/dashboard.service';
     NotFoundComponent,
     HomeComponent,
     MenuManagement,
-    DailyPreparationsComponent
+    DailyPreparationsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +92,8 @@ import { DashboardService } from './services/childServices/dashboard.service';
     DashboardService,
     DailyPlatesService,
     AnalysisService,
-    Authguard
+    Authguard,
+    RegisterService
 
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

@@ -13,11 +13,13 @@ import { SettingComponent } from '../components/home/childrenComp/setting/settin
 import { MenuManagement } from '../components/home/childrenComp/menu-management/menu-management.component';
 import { DailyPreparationsComponent } from '../components/home/childrenComp/daily-preparations/daily-preparations.component';
 import { Authguard } from '../services/childServices/authguard.service';
+import { RegisterComponent } from '../components/register/register.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'home',
     component: HomeComponent,
     children :[

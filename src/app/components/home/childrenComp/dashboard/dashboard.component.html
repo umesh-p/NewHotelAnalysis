@@ -74,9 +74,12 @@
                       <ul class="list-group">
                           <li class="list-group-item d-flex justify-content-between fontSize15 align-items-center" *ngFor="let item of lessQtyItems">
                               {{item.itemname | uppercase}}
-                              <span class="badge badge-pill red">{{item.qtyPresent + " "+ item.unit}} in stock</span>
+                              <span class="badge badge-pill red">{{item.qtyPresent | number:'1.2'}} {{item.unit}} in stock</span>
                           </li>
                       </ul>
+                      <div *ngIf="lessQtyItems.length == 0">
+                        No Items are Less in stock !!!
+                      </div>
                       <hr>
                       <div class="float-right">
                         <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>
@@ -95,6 +98,10 @@
                               <span class="badge badge-pill green">{{item.orderedQty+ " "+ item.unit}} ordered</span>
                           </li>
                         </ul>
+
+                        <div *ngIf="orderedItems.length == 0">
+                          No Items are ordered now .  <br /><br /> Check out for less stock items to order !!!
+                        </div>
                         <hr>
                         <div class="float-right">
                           <a class="btn btn-primary btn-sm my-0 noMargin" (click)="goToOrder()">check It out</a>

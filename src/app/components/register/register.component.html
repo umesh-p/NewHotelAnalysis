@@ -1,0 +1,96 @@
+
+<!--Main Navigation-->
+<header>
+  <!--Intro Section-->
+  <section class="view intro-2 hm-gradient">
+      <div class="full-bg-img">
+          <div class="container flex-center style-4 overflowYAuto" >
+              <div class="d-flex align-items-center content-height">
+                  <div class="row flex-center pt-3 mt-3">
+                      <div class="col-md-6 text-center text-md-left mb-5">
+                          <div class="white-text">
+                              <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up to Flemingo ! </h1>
+                              <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                              <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Manage Your Business Of Hotel End To End. Get Analysis Of Your Data To Get Useful Insights Which Ultimately Help Your Business To Grow. Also See What People Are Saying About You ..</h6>
+                              <br>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6 col-lg-5 col-xl-5  offset-xl-1">
+
+                          <!--Card-->
+                          <div class="card card-cascade">
+                            <!-- Card image -->
+                              <div class="view gradient-card-header blue-gradient">
+
+                                <!-- Title -->
+                                <h2 class="card-header-title mb-3">Register</h2>
+                                <!-- Subtitle -->
+                                <p class="card-header-subtitle mb-0">Fill Details to Sign Up</p>
+
+                              </div>
+
+                            <!--Card content-->
+                            <div class="card-body whiteBackground">
+
+                                <h5 class="indigo-text text-center" ><a routerLink="/login"><strong>Go back to Login</strong></a></h5>
+
+                                <form #registerFromObj="ngForm" (ngSubmit)="registerFrom(registerFromObj)" novalidate >
+
+                                    <div class="md-form">
+                                        <input mdbActive type="text" id="form1" class="form-control noMargin" name="name" ngModel required />
+                                        <label for="form1" class="">User Name</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input mdbActive type="password" id="form2" class="form-control noMargin" name="password" ngModel required />
+                                        <label for="form2" class="">Enter Password</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input mdbActive type="text" id="form3" class="form-control noMargin" name="nickname" ngModel required />
+                                        <label for="form3" class="">Nick Name</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input mdbActive type="text" id="form4" class="form-control noMargin" name="role" ngModel required />
+                                        <label for="form4" class="">User Role</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input mdbActive type="number" id="form5" class="form-control noMargin" name="zomatoid" ngModel required />
+                                        <label for="form5" class="">Zomato ID</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input mdbActive type="number" id="form6" class="form-control noMargin" name="tablecount" ngModel required />
+                                        <label for="form6" class="">Table Count</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input mdbActive type="text" id="form7" class="form-control noMargin" name="adminname" ngModel required />
+                                        <label for="form7" class="">Admin Name</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <input mdbActive type="password" id="form8" class="form-control noMargin" name="adminpassword" ngModel required />
+                                        <label for="form8" class="">Admin Password</label>
+                                    </div>
+
+                                    <input type='submit' class="btn btn-unique waves-light float-right" mdbRippleRadius />
+                                </form>
+                            </div>
+                            <!--/.Card content-->
+
+                          </div>
+                          <!--/.Card-->
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+</header>
+<!--Main Navigation-->
