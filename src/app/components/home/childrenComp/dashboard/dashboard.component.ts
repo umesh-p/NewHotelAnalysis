@@ -14,25 +14,25 @@ export class DashboardComponent implements OnInit {
 
 	allDiabledItems: any = [];
 	dashboardData: any = {};
-  lessQtyItems:any = [];
-  orderedItems:any = [];
+  lessQtyItems: any = [];
+  orderedItems: any = [];
 
-  public doughnutChartLabels:string[] = [];
-  public doughnutChartData:number[] = [];
-  public doughnutChartType:string = 'doughnut';
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartData: number[] = [];
+  public doughnutChartType = 'doughnut';
 
-  public lineChartData:Array<any> = [{'data': [], 'label': 'Orders last 10 Days'}];
-  public lineChartLabels:Array<any> = [];
-  public lineChartType:string = 'line';
+  public lineChartData: Array<any> = [{'data': [], 'label': 'Orders last 10 Days'}];
+  public lineChartLabels: Array<any> = [];
+  public lineChartType = 'line';
 
-  constructor(private menuService : MenuItemService,
-              private router:Router,
-              private inventoryService : InventoryService,
-              private dashboardService : DashboardService) { }
+  constructor(private menuService: MenuItemService,
+              private router: Router,
+              private inventoryService: InventoryService,
+              private dashboardService: DashboardService) { }
 
   ngOnInit() {
     this.inventoryService.getAll().subscribe((result) => {
-      this.lessQtyItems = result['data'].filter(item =>((item.qtyPresent <= item.minQty ) && (item.orderedQty == 0)))
+      this.lessQtyItems = result['data'].filter(item => ((item.qtyPresent <= item.minQty ) && (item.orderedQty == 0)));
       this.orderedItems = result['data'].filter(item => item.orderedQty > 0);
     });
 
@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
         this.doughnutChartData = this.dashboardData['allPaymentCount'];
         this.lineChartLabels = this.dashboardData['lastTenDays'];
         this.lineChartData = [{'data': this.dashboardData['orderCount'], 'label': 'Orders last 10 Days'}];
-    })
+    });
 
 
     this.menuService.getAll().subscribe((result) => {
@@ -52,19 +52,19 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  goToOrder(){
-    this.router.navigateByUrl("home/stockInventory");
+  goToOrder() {
+    this.router.navigateByUrl('home/stockInventory');
   }
 
-  gotToMenu(){
-    this.router.navigateByUrl("home/manageMenu");
+  gotToMenu() {
+    this.router.navigateByUrl('home/manageMenu');
   }
 
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
 
-  public chartHovered(e:any):void {
+  public chartHovered(e: any): void {
     console.log(e);
   }
 

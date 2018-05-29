@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  dataURL:'http://127.0.0.1:5000/',
-  tostConfigurations:{
+  dataURL: 'http://127.0.0.1:5000/',
+  tostConfigurations: {
     showCloseButton : true
   }
 };

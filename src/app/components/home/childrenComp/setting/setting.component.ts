@@ -11,43 +11,43 @@ import { ToastsManager } from 'ng2-toastr';
 export class SettingComponent implements OnInit {
 
 
-  tableNumber:number;
-  allCategories:any;
-  newCategory:string;
+  tableNumber: number;
+  allCategories: any;
+  newCategory: string;
 
-  constructor(private loginService : LoginService , private categoryService : CategoryService , public toastr: ToastsManager) { }
+  constructor(private loginService: LoginService , private categoryService: CategoryService , public toastr: ToastsManager) { }
 
   ngOnInit() {
     this.tableNumber = parseInt(sessionStorage.getItem('tableCount'));
 
     this.categoryService.getAll().subscribe((result) => {
       this.allCategories = result['data'];
-    })
+    });
 
   }
 
-  addTableCount(tableCount){
+  addTableCount(tableCount) {
     this.tableNumber = tableCount;
 
     this.loginService.put(tableCount).subscribe((result) => {
-          sessionStorage.setItem('tableCount',tableCount.toString());
-          this.toastr.success('Table Count Updated Successfully' ,"Success" , {showCloseButton : true});
-    })
+          sessionStorage.setItem('tableCount', tableCount.toString());
+          this.toastr.success('Table Count Updated Successfully' , 'Success' , {showCloseButton : true});
+    });
 
   }
 
-  addNewFoodCategory(categoryInput){
+  addNewFoodCategory(categoryInput) {
 
-      let newCategory:object = {};
+      const newCategory: object = {};
 
       newCategory['id'] = this.allCategories.length + 1;
       newCategory['name'] = categoryInput.value;
 
       this.categoryService.post(categoryInput.value).subscribe((result) => {
 
-          this.allCategories.push(newCategory)
-          this.toastr.success('New Food Category Added Successfully' ,"Success" , {showCloseButton : true});
-      })
+          this.allCategories.push(newCategory);
+          this.toastr.success('New Food Category Added Successfully' , 'Success' , {showCloseButton : true});
+      });
 
       categoryInput.value = '';
   }

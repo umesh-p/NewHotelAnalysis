@@ -1,5 +1,5 @@
-import { Component, OnInit ,Input , Output } from '@angular/core';
-import { MenuDataService } from "../../services/childServices/menu-data.service";
+import { Component, OnInit , Input , Output } from '@angular/core';
+import { MenuDataService } from '../../services/childServices/menu-data.service';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,12 +9,12 @@ import { EventEmitter } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  @Input('sideNavHideShow') sideNavHideShow:boolean = true;
+  @Input('sideNavHideShow') sideNavHideShow = true;
 
   @Output ('closeSideNav') closeSideNavEvent = new EventEmitter<boolean>();
 
-  menuDataArray:any = [];
-  constructor(private menuData : MenuDataService) { }
+  menuDataArray: any = [];
+  constructor(private menuData: MenuDataService) { }
 
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class SidenavComponent implements OnInit {
     });
   }
 
-  closeSideNav(){
+  closeSideNav() {
     this.sideNavHideShow = !this.sideNavHideShow;
     this.closeSideNavEvent.emit(this.sideNavHideShow);
 

@@ -7,7 +7,7 @@ import { Http } from '@angular/http';
 export class CategoryService extends DataService {
 
 
-  allCategories:any = [];
+  allCategories: any = [];
 
   constructor(http: Http) {
     super((environment.dataURL + 'category') , http);

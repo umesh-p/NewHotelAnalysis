@@ -10,17 +10,17 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private registerService: RegisterService , private toastr :ToastsManager , private router:Router) { }
+  constructor(private registerService: RegisterService , private toastr: ToastsManager , private router: Router) { }
 
   ngOnInit() {
   }
 
-  registerFrom(registerFromObject){
+  registerFrom(registerFromObject) {
 
     this.registerService.post(registerFromObject.value).subscribe((result) => {
-      this.toastr.success('User Registered Successfully ..', 'Success!' ,{showCloseButton : true});
-      this.router.navigateByUrl('/login')
-    })
+      this.toastr.success('User Registered Successfully ..', 'Success!' , {showCloseButton : true});
+      this.router.navigateByUrl('/login');
+    });
   }
 
 }

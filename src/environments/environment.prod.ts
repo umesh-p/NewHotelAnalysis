@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  dataURL:'http://13.127.130.223:5000/'
+  dataURL: 'http://ec2-13-127-246-97.ap-south-1.compute.amazonaws.com:5000/'
 };

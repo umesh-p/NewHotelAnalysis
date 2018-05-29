@@ -16,30 +16,29 @@ import { MenuItemService } from '../../services/childServices/menu-item.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService : LoginService , private router:Router,public toastr: ToastsManager,private menuService:MenuItemService) {
+  constructor(private loginService: LoginService , private router: Router, public toastr: ToastsManager, private menuService: MenuItemService) {
   }
 
   ngOnInit() {
   }
 
-  loginUser(userData : any){
-    let loginUserData = userData.value;
+  loginUser(userData: any) {
+    const loginUserData = userData.value;
 
     this.loginService.post(loginUserData).subscribe( (responseData) => {
-      if(responseData.success){
-        sessionStorage.setItem('userName',responseData.data.userName);
-        sessionStorage.setItem('tableCount',responseData.data.tableCount);
-        sessionStorage.setItem('zomatoid',responseData.data.zomatoid);
+      if (responseData.success) {
+        sessionStorage.setItem('userName', responseData.data.userName);
+        sessionStorage.setItem('tableCount', responseData.data.tableCount);
+        sessionStorage.setItem('zomatoid', responseData.data.zomatoid);
 
         this.router.navigateByUrl('/home/dashboard');
-      }else{
-        this.toastr.error(responseData.message, 'Error!' ,{showCloseButton : true});
+      } else {
+        this.toastr.error(responseData.message, 'Error!' , {showCloseButton : true});
       }
-    },(error:AppError) => {
-      if(error instanceof NotFoundError){
-        console.log('not found')
-      }
-      else throw error;
-    })
+    }, (error: AppError) => {
+      if (error instanceof NotFoundError) {
+        console.log('not found');
+      } else { throw error; }
+    });
   }
 }

@@ -9,18 +9,18 @@ import { ReviewService } from '../../../../services/childServices/review.service
 export class ReviewComponent implements OnInit {
 
 
-  reviewData:any;
+  reviewData: any;
 
-  constructor(private reviewService : ReviewService) { }
+  constructor(private reviewService: ReviewService) { }
 
   ngOnInit() {
-    let postData = {};
-    postData["zomatoid"] = sessionStorage.getItem('zomatoid');
+    const postData = {};
+    postData['zomatoid'] = sessionStorage.getItem('zomatoid');
 
     this.reviewService.post(postData).subscribe((result) => {
-      this.reviewData = JSON.parse(result.data)
+      this.reviewData = JSON.parse(result.data);
 
-    })
+    });
 
 
   }

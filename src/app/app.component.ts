@@ -8,13 +8,12 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent{
+export class AppComponent {
 
-  title:string = 'app';
+  title = 'app';
 
-  constructor( public toastr: ToastsManager, private vRef: ViewContainerRef)
- {
+  constructor( public toastr: ToastsManager, private vRef: ViewContainerRef) {
    this.toastr.setRootViewContainerRef(vRef);
- }
+  }
 
 }

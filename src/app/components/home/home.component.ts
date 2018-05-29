@@ -10,18 +10,18 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
 
-  showSideNav:boolean = true;
+  showSideNav = true;
 
-  constructor(private menuService:MenuItemService , private router : Router){}
+  constructor(private menuService: MenuItemService , private router: Router) {}
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
-  onSignOut(){
+  onSignOut() {
     sessionStorage.setItem('userName', null);
-    sessionStorage.setItem('tableCount',null);
-    sessionStorage.setItem('zomatoid',null);
+    sessionStorage.setItem('tableCount', null);
+    sessionStorage.setItem('zomatoid', null);
     this.router.navigateByUrl('/login');
 
   }

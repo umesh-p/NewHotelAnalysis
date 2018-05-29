@@ -17,11 +17,11 @@ export class DailyPreparationsComponent implements OnInit {
   allStockItems = [];
   allTodaysPreparations = [];
 
-  selectedItem:any = {};
+  selectedItem: any = {};
 
-  constructor(private menuService:MenuItemService,
-              private inventoryService:InventoryService,
-              private dailyPlatesService:DailyPlatesService,
+  constructor(private menuService: MenuItemService,
+              private inventoryService: InventoryService,
+              private dailyPlatesService: DailyPlatesService,
               public toastr: ToastsManager ) { }
 
   ngOnInit() {
@@ -34,33 +34,33 @@ export class DailyPreparationsComponent implements OnInit {
     });
     this.dailyPlatesService.getAll().subscribe((result) => {
       this.allTodaysPreparations = result['data'];
-    })
+    });
 
   }
 
-  prepareNoOfPlatesOfItem(menuItem , i){
+  prepareNoOfPlatesOfItem(menuItem , i) {
 
-    let item:any = {};
+    const item: any = {};
     item['name'] = menuItem.name;
     item['menuIndex'] = i;
-    item['noOfPlatesToPrepare'] = menuItem['noOfPlatesToPrepare']
-    item['platesperday'] = menuItem['platesperday']
-    item['materialUsed'] = []
+    item['noOfPlatesToPrepare'] = menuItem['noOfPlatesToPrepare'];
+    item['platesperday'] = menuItem['platesperday'];
+    item['materialUsed'] = [];
 
-    for(i in menuItem.materialUsed){
+    for (i in menuItem.materialUsed) {
 
       let qtyRequied = 0;
-      if(menuItem.materialUsed[i].unit == 'Gms'){
+      if (menuItem.materialUsed[i].unit == 'Gms') {
           menuItem.materialUsed[i].unit = 'Kg';
           menuItem.materialUsed[i].qtyused = menuItem.materialUsed[i].qtyused / 1000;
       }
       qtyRequied = (menuItem.materialUsed[i].qtyused * menuItem['noOfPlatesToPrepare'] / menuItem['platesperday'] );
       menuItem.materialUsed[i]['qtyRequied'] = qtyRequied;
-      let stockItem = this.allStockItems.filter((item) => item['itemname'] == menuItem.materialUsed[i]['materialname']);
+      const stockItem = this.allStockItems.filter((item) => item['itemname'] == menuItem.materialUsed[i]['materialname']);
 
-      if(stockItem[0].qtyPresent < qtyRequied){
+      if (stockItem[0].qtyPresent < qtyRequied) {
         menuItem.materialUsed[i]['isLessInStock'] = true;
-      }else{
+      } else {
         menuItem.materialUsed[i]['isLessInStock'] = false;
       }
 
@@ -72,17 +72,17 @@ export class DailyPreparationsComponent implements OnInit {
 
   }
 
-  makeItem(menuItem){
+  makeItem(menuItem) {
 
-    let preparationObject:any = {};
+    const preparationObject: any = {};
 
     preparationObject['name'] = menuItem.name;
     preparationObject['noofplates'] = menuItem.noOfPlatesToPrepare;
     preparationObject['dayDate'] = this.getDateString();
 
-    for(let i in menuItem.materialUsed){
+    for (const i in menuItem.materialUsed) {
 
-      let index = this.allStockItems.findIndex(x => x['itemname'] == menuItem.materialUsed[i]['materialname'] );
+      const index = this.allStockItems.findIndex(x => x['itemname'] == menuItem.materialUsed[i]['materialname'] );
       this.allStockItems[index]['qtyPresent'] = this.allStockItems[index]['qtyPresent'] - menuItem.materialUsed[i]['qtyRequied'];
       this.inventoryService.put(this.allStockItems[index]).subscribe((result) => {
       });
@@ -91,18 +91,18 @@ export class DailyPreparationsComponent implements OnInit {
     this.allMenuData.splice(menuItem.menuIndex , 1);
     this.selectedItem = {};
     this.allTodaysPreparations.push(preparationObject);
-    this.dailyPlatesService.post(preparationObject).subscribe((result)=> {
-      this.toastr.success('Menu Has been prepared .' ,"Success" , {showCloseButton : true});
+    this.dailyPlatesService.post(preparationObject).subscribe((result) => {
+      this.toastr.success('Menu Has been prepared .' , 'Success' , {showCloseButton : true});
     });
   }
 
-  getDateString(){
-    var d = new Date(),
+  getDateString() {
+    let d = new Date(),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+    if (month.length < 2) { month = '0' + month; }
+    if (day.length < 2) { day = '0' + day; }
     return [year, month, day].join('-');
   }
 

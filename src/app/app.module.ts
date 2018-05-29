@@ -79,7 +79,7 @@ import { DashboardService } from './services/childServices/dashboard.service';
     ScrollbarModule
     ],
   providers: [
-    { provide : ErrorHandler , useClass:GlobalErrorHandler},
+    { provide : ErrorHandler , useClass: GlobalErrorHandler},
     DataService,
     LoginService,
     MenuDataService,

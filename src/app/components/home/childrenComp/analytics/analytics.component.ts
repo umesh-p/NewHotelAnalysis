@@ -8,16 +8,16 @@ import { AnalysisService } from '../../../../services/childServices/analysis.ser
 })
 export class AnalyticsComponent implements OnInit {
 
-  analysisData:any = {};
+  analysisData: any = {};
 
 
-  public barChartData:Array<any> = [{'data': [], 'label': 'Orders distribution per Hour'}];
-  public barChartLabels:string[] = [];
-  public barChartType:string = 'line';
-  public barChartLegend:boolean = true;
+  public barChartData: Array<any> = [{'data': [], 'label': 'Orders distribution per Hour'}];
+  public barChartLabels: string[] = [];
+  public barChartType = 'line';
+  public barChartLegend = true;
 
 
-  constructor(private analysisService:AnalysisService) { }
+  constructor(private analysisService: AnalysisService) { }
 
   ngOnInit() {
 
@@ -25,29 +25,29 @@ export class AnalyticsComponent implements OnInit {
         this.analysisData = JSON.parse(result['data']);
         this.barChartLabels = this.analysisData['orderHour'];
         this.barChartData = [{'data': this.analysisData['orderCountHour'], 'label': 'Orders distribution per Hour '}];
-        console.log(this.analysisData)
+        console.log(this.analysisData);
         this.analysisData.avgTimePerOrder = this.millisToMinutesAndSeconds();
 
-      })
+      });
 
 
   }
 
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
   console.log(e);
   }
 
-  public chartHovered(e:any):void {
+  public chartHovered(e: any): void {
     console.log(e);
   }
 
   millisToMinutesAndSeconds() {
-    let avgTimePerOrder = parseInt(this.analysisData.avgTimePerOrder)
+    const avgTimePerOrder = parseInt(this.analysisData.avgTimePerOrder);
 
-    let minutes = Math.floor(avgTimePerOrder / 60000);
-    let seconds = ((avgTimePerOrder % 60000) / 1000).toFixed(0);
+    const minutes = Math.floor(avgTimePerOrder / 60000);
+    const seconds = ((avgTimePerOrder % 60000) / 1000).toFixed(0);
 
-    return minutes + ":" + (parseInt(seconds) < 10 ? '0' : '') + seconds;
+    return minutes + ':' + (parseInt(seconds) < 10 ? '0' : '') + seconds;
   }
 
 

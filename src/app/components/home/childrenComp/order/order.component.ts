@@ -13,33 +13,33 @@ export class OrderComponent implements OnInit {
 
 
   //Common Objects
-  totaltables:any;
+  totaltables: any;
 
-  completeMenu:any = [];
+  completeMenu: any = [];
 	allCategoriesArray: any;
-  allFavouriteItems:any = [];
-  Scrolled:number = 0;
+  allFavouriteItems: any = [];
+  Scrolled = 0;
   selectedCategory: any;
 
-  tabActive:string = 'tableorder';
+  tabActive = 'tableorder';
 
   //tableSpecific Orders
   activeTable: any = 1;
-  allTableOrders:any = [];
-  activetableOrder:any;
+  allTableOrders: any = [];
+  activetableOrder: any;
 
   //For Online Orders
   activeOrder = 0;
-  detailOrder:any;
-  allOnlineOrders:any = [];
+  detailOrder: any;
+  allOnlineOrders: any = [];
 
   //all Parcel Orders
 
-  parcelOrders:number = 10;
-  allParcelOrders:any = [];
+  parcelOrders = 10;
+  allParcelOrders: any = [];
 
-  constructor(private menuService:MenuItemService ,
-              private orderService : OrderService,
+  constructor(private menuService: MenuItemService ,
+              private orderService: OrderService,
               public toastr: ToastsManager) { }
   ngOnInit() {
 
@@ -47,7 +47,7 @@ export class OrderComponent implements OnInit {
 
     this.allOnlineOrders = this.orderService.getOnlineOrdersObject();
     this.allTableOrders = this.orderService.getTableOrdersObject();
-    this.allParcelOrders = this.orderService.getParcelOrdersObject()
+    this.allParcelOrders = this.orderService.getParcelOrdersObject();
 
     this.detailOrder = this.allOnlineOrders[0];
 
@@ -66,33 +66,33 @@ export class OrderComponent implements OnInit {
     return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
   }
 
-  selectedTable(tableNumber){
+  selectedTable(tableNumber) {
     this.activeTable = tableNumber + 1;
     this.activetableOrder = this.allTableOrders[tableNumber];
   }
 
-  addItemToOrder(item){
+  addItemToOrder(item) {
 
-    let orderedItem:any = {};
-    let dateObj = new Date();
+    const orderedItem: any = {};
+    const dateObj = new Date();
     orderedItem['name'] = item['name'];
     orderedItem['orderedqty'] = item.forderdQty ? item.forderdQty : item.orderdQty;
     orderedItem['totalprice'] = (orderedItem['orderedqty'] * item['sellingprice']);
     orderedItem['totalcost'] = (orderedItem['orderedqty'] * item['costprice']);
-    orderedItem['sellingprice'] = item['sellingprice']
+    orderedItem['sellingprice'] = item['sellingprice'];
     orderedItem['category'] = item['category'];
 
     this.activetableOrder.totalBill = this.activetableOrder.totalBill + orderedItem['totalprice'];
 
     this.activetableOrder.orderedItems.push(orderedItem);
 
-    if(this.activetableOrder.orderedItems.length == 1){
+    if (this.activetableOrder.orderedItems.length == 1) {
       this.activetableOrder['startTime'] = dateObj.getTime();
-    }else if(this.activetableOrder.orderedItems.length == 0){
+    } else if (this.activetableOrder.orderedItems.length == 0) {
       this.activetableOrder['startTime'] = 0;
     }
 
-    if(this.activetableOrder.orderedItems.length > 0){
+    if (this.activetableOrder.orderedItems.length > 0) {
       this.activetableOrder.status = 'busy';
     }
 
@@ -100,62 +100,62 @@ export class OrderComponent implements OnInit {
     item.forderdQty = '';
   }
 
-  qtyChanged(index , item){
-    let newPrice = (item['orderedqty'] * item['sellingprice']);
+  qtyChanged(index , item) {
+    const newPrice = (item['orderedqty'] * item['sellingprice']);
     this.activetableOrder.totalBill = this.activetableOrder.totalBill - item['totalprice'] + newPrice;
     this.activetableOrder.orderedItems[index]['totalprice'] = newPrice;
   }
 
-  removeOrderedItem(index , item){
+  removeOrderedItem(index , item) {
     this.activetableOrder.totalBill = this.activetableOrder.totalBill - item['totalprice'];
     this.activetableOrder.orderedItems.splice(index , 1);
-    if(this.activetableOrder.orderedItems.length == 0){
+    if (this.activetableOrder.orderedItems.length == 0) {
       this.activetableOrder.status = 'open';
     }
   }
 
-  selectCategory(clickedCategory){
+  selectCategory(clickedCategory) {
       this.selectedCategory = clickedCategory;
   }
 
-  scroll(ele , direction){
-      let maxWidth = ele._scrollLeftMax;
-      if(direction == 'left' && this.Scrolled >= 200){
+  scroll(ele , direction) {
+      const maxWidth = ele._scrollLeftMax;
+      if (direction == 'left' && this.Scrolled >= 200) {
           this.Scrolled = this.Scrolled - 300;
           ele.scrollXTo(this.Scrolled);
-      }else if(direction == 'right' && this.Scrolled < maxWidth){
+      } else if (direction == 'right' && this.Scrolled < maxWidth) {
           this.Scrolled = this.Scrolled + 300;
           ele.scrollXTo(this.Scrolled);
       }
   }
 
   //Online order functions...
-  showOrderDetails(onlineOrder){
+  showOrderDetails(onlineOrder) {
       this.activeOrder = onlineOrder;
       this.detailOrder = this.allOnlineOrders[onlineOrder];
   }
 
-  onlineOrderDispatched(detailOrder){
+  onlineOrderDispatched(detailOrder) {
       this.allOnlineOrders.splice(this.activeOrder , 1);
       this.activeOrder = 0;
       this.detailOrder = this.allOnlineOrders[0];
       this.submitOrder(detailOrder);
   }
   // Common submit order function .
-  submitOrder(order:any){
+  submitOrder(order: any) {
 
   this.allTableOrders[order.tableNumber] = this.getNewTableObject(order.tableNumber);
   this.activetableOrder = this.allTableOrders[order.tableNumber];
 
-  let orderObject:any = {};
-  let dateObj = new Date();
+  const orderObject: any = {};
+  const dateObj = new Date();
 
-  orderObject['customername'] = "abc";
+  orderObject['customername'] = 'abc';
   orderObject['year'] = dateObj.getFullYear();
   orderObject['month'] = dateObj.getMonth() + 1;
   orderObject['day'] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dateObj.getDay()];
   orderObject['date'] = dateObj.getDate();
-  orderObject['hour'] =dateObj.getHours();
+  orderObject['hour'] = dateObj.getHours();
   orderObject['totaltime'] = dateObj.getTime() - order['startTime'];
   orderObject['totalbillamt'] = order['totalBill'];
   orderObject['waitingtime'] = 0;
@@ -164,20 +164,20 @@ export class OrderComponent implements OnInit {
   orderObject['paymentmethod'] = order.paymentmethod;
 
     this.orderService.post(orderObject).subscribe((result) => {
-      this.toastr.success('Order Successfully Submitted' ,"Success" , {showCloseButton : true});
+      this.toastr.success('Order Successfully Submitted' , 'Success' , {showCloseButton : true});
     });
 
   }
   //AssignTable Objects to tableOrder Functions
-  assignTableData(){
-    for(let i = 0; i < this.totaltables ; i++){
+  assignTableData() {
+    for (let i = 0; i < this.totaltables ; i++) {
         this.allTableOrders.push(this.getNewTableObject(i));
     }
     this.activetableOrder = this.allTableOrders[0];
   }
 
-  getNewTableObject(index){
-    let tableInfoObj:any = {};
+  getNewTableObject(index) {
+    const tableInfoObj: any = {};
 
     tableInfoObj['tableNumber'] = index;
     tableInfoObj['totalBill'] = 0;
