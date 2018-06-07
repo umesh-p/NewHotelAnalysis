@@ -29,3 +29,7 @@ h6 {
         height: 1040px;
     }
 }
+input:-webkit-autofill ~ label {
+  -webkit-transform: translate(0%, -150%) scale(1);
+          transform: translate(0%, -150%) scale(1);
+}

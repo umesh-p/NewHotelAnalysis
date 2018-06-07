@@ -9,7 +9,7 @@
                   <div class="row flex-center pt-3 mt-3">
                       <div class="col-md-6 text-center text-md-left mb-5">
                           <div class="white-text">
-                              <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up to Flemingo ! </h1>
+                              <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up to Flamingo ! </h1>
                               <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
                               <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Manage Your Business Of Hotel End To End. Get Analysis Of Your Data To Get Useful Insights Which Ultimately Help Your Business To Grow. Also See What People Are Saying About You ..</h6>
                               <br>
@@ -35,50 +35,63 @@
 
                                 <h5 class="indigo-text text-center" ><a routerLink="/login"><strong>Go back to Login</strong></a></h5>
 
-                                <form #registerFromObj="ngForm" (ngSubmit)="registerFrom(registerFromObj)" novalidate >
+                                <form *ngIf="!displayThanks" #registerFromObj="ngForm" (ngSubmit)="registerFrom(registerFromObj)" novalidate >
 
                                     <div class="md-form">
-                                        <input mdbActive type="text" id="form1" class="form-control noMargin" name="name" ngModel required />
-                                        <label for="form1" class="">User Name</label>
+                                        <input mdbActive pattern="[a-zA-Z]*" type="text" id="form1" class="form-control noMargin" name="name" #uname="ngModel" ngModel required />
+                                        <label for="form1">Restaurants Name</label>
+                                        <div *ngIf="uname.touched">
+                                          <div *ngIf="uname.errors?.pattern" class="dangerText warningMsg mb-3">
+                                               Restaurants Name Should not include Spaces, Special Characters and Numbers.
+                                          </div>
+                                        </div>
                                     </div>
-
                                     <div class="md-form">
-                                        <input mdbActive type="password" id="form2" class="form-control noMargin" name="password" ngModel required />
+                                        <input mdbActive type="password" id="form2"  class="form-control noMargin" name="password" ngModel required />
                                         <label for="form2" class="">Enter Password</label>
                                     </div>
-
                                     <div class="md-form">
                                         <input mdbActive type="text" id="form3" class="form-control noMargin" name="nickname" ngModel required />
                                         <label for="form3" class="">Nick Name</label>
                                     </div>
-
+                                    <div class="md-form">
+                                        <input mdbActive type="email" id="form7" class="form-control noMargin" name="email" value="email" ngModel required />
+                                        <label for="form7" class="">Email Id</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <input mdbActive type="number" id="form8" class="form-control noMargin" name="phone" value="phone" ngModel required />
+                                        <label for="form8" class="">Phone Number</label>
+                                    </div>
                                     <div class="md-form">
                                         <input mdbActive type="text" id="form4" class="form-control noMargin" name="role" ngModel required />
                                         <label for="form4" class="">User Role</label>
                                     </div>
-
                                     <div class="md-form">
                                         <input mdbActive type="number" id="form5" class="form-control noMargin" name="zomatoid" ngModel required />
                                         <label for="form5" class="">Zomato ID</label>
                                     </div>
-
                                     <div class="md-form">
                                         <input mdbActive type="number" id="form6" class="form-control noMargin" name="tablecount" ngModel required />
                                         <label for="form6" class="">Table Count</label>
                                     </div>
-
-                                    <div class="md-form">
-                                        <input mdbActive type="text" id="form7" class="form-control noMargin" name="adminname" ngModel required />
-                                        <label for="form7" class="">Admin Name</label>
-                                    </div>
-
-                                    <div class="md-form">
-                                        <input mdbActive type="password" id="form8" class="form-control noMargin" name="adminpassword" ngModel required />
-                                        <label for="form8" class="">Admin Password</label>
-                                    </div>
-
                                     <input type='submit' class="btn btn-unique waves-light float-right" [disabled]="!registerFromObj.valid" mdbRippleRadius />
                                 </form>
+
+
+
+                                <div class="thanksMessage" *ngIf="displayThanks">
+                                    <h4>Registration Successful</h4>
+                                    <br>
+                                    <p>Thanks For Choosing Flamingo</p>
+                                    <p class="pb-0 mb-0">A representative from our team would reach out to you soon.</p>
+
+                                    <p>You can always reach out to us at +91 9657587050 for any assistance</p>
+
+
+
+                                </div>
+
+
                             </div>
                             <!--/.Card content-->
 
